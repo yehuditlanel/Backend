@@ -1,0 +1,664 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Group's_code" />
+          </Key>
+          <Property Name="Group's_code" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Conected_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Conected_phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Group's_name" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Details_of_vehicles">
+          <Key>
+            <PropertyRef Name="License_plate" />
+          </Key>
+          <Property Name="License_plate" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="several_places" Type="int" Nullable="false" />
+          <Property Name="Quantity_of_fuel_per_km" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hour_of_work_to_driver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Driver's_code" Type="int" Nullable="false" />
+          <Property Name="Day" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Work_from_hour" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Work_to_hour" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passengers">
+          <Key>
+            <PropertyRef Name="Passenger's_code" />
+          </Key>
+          <Property Name="Passenger's_code" Type="int" Nullable="false" />
+          <Property Name="Group's_code" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Passenger's_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Passenger's_address" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passengers_to_track">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Passenger's_code" Type="int" Nullable="false" />
+          <Property Name="Travel's_code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passengers_to_travels">
+          <Key>
+            <PropertyRef Name="Passenger's_code" />
+            <PropertyRef Name="Travel's_code" />
+          </Key>
+          <Property Name="Passenger's_code" Type="int" Nullable="false" />
+          <Property Name="Travel's_code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Track_to_travel">
+          <Key>
+            <PropertyRef Name="Track's_code" />
+          </Key>
+          <Property Name="Track's_code" Type="int" Nullable="false" />
+          <Property Name="Travel's_code" Type="int" Nullable="false" />
+          <Property Name="Driver's_Id" Type="int" Nullable="false" />
+          <Property Name="License_plate" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Date_of_travel" Type="date" Nullable="false" />
+          <Property Name="Hour_of_begin" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Travels">
+          <Key>
+            <PropertyRef Name="Travel's_code" />
+          </Key>
+          <Property Name="Travel's_code" Type="int" Nullable="false" />
+          <Property Name="Collection_or_dispersing" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Destination_or_source" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Hour" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Frequency" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Date_of_begin" Type="date" Nullable="false" />
+          <Property Name="Date_of_end" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type_of_vehicles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User's_Id" />
+          </Key>
+          <Property Name="User's_Id" Type="int" Nullable="false" />
+          <Property Name="Name_of_user" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Address_of_user" Type="nvarchar" MaxLength="20" />
+          <Property Name="Phone_of_user" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Permition" Type="int" />
+        </EntityType>
+        <Association Name="FK_Details_of_vehicles_ToTable">
+          <End Role="Type_of_vehicles" Type="Self.Type_of_vehicles" Multiplicity="1" />
+          <End Role="Details_of_vehicles" Type="Self.Details_of_vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_of_vehicles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Details_of_vehicles">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hour_of_work_to_driver_ToTable">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Hour_of_work_to_driver" Type="Self.Hour_of_work_to_driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User's_Id" />
+            </Principal>
+            <Dependent Role="Hour_of_work_to_driver">
+              <PropertyRef Name="Driver's_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_to_track_ToTable">
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="1" />
+          <End Role="Passengers_to_track" Type="Self.Passengers_to_track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passengers">
+              <PropertyRef Name="Passenger's_code" />
+            </Principal>
+            <Dependent Role="Passengers_to_track">
+              <PropertyRef Name="Passenger's_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_to_track_ToTable_1">
+          <End Role="Travels" Type="Self.Travels" Multiplicity="1" />
+          <End Role="Passengers_to_track" Type="Self.Passengers_to_track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Travels">
+              <PropertyRef Name="Travel's_code" />
+            </Principal>
+            <Dependent Role="Passengers_to_track">
+              <PropertyRef Name="Travel's_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_to_travels_ToTable">
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="1" />
+          <End Role="Passengers_to_travels" Type="Self.Passengers_to_travels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passengers">
+              <PropertyRef Name="Passenger's_code" />
+            </Principal>
+            <Dependent Role="Passengers_to_travels">
+              <PropertyRef Name="Passenger's_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_to_travels_ToTable_1">
+          <End Role="Travels" Type="Self.Travels" Multiplicity="1" />
+          <End Role="Passengers_to_travels" Type="Self.Passengers_to_travels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Travels">
+              <PropertyRef Name="Travel's_code" />
+            </Principal>
+            <Dependent Role="Passengers_to_travels">
+              <PropertyRef Name="Travel's_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_ToTable">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Group's_code" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="Group's_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Track_to_travel_ToTable">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User's_Id" />
+            </Principal>
+            <Dependent Role="Track_to_travel">
+              <PropertyRef Name="Driver's_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Track_to_travel_ToTable_1">
+          <End Role="Details_of_vehicles" Type="Self.Details_of_vehicles" Multiplicity="1" />
+          <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Details_of_vehicles">
+              <PropertyRef Name="License_plate" />
+            </Principal>
+            <Dependent Role="Track_to_travel">
+              <PropertyRef Name="License_plate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Track_to_travel_ToTable_2">
+          <End Role="Travels" Type="Self.Travels" Multiplicity="1" />
+          <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Travels">
+              <PropertyRef Name="Travel's_code" />
+            </Principal>
+            <Dependent Role="Track_to_travel">
+              <PropertyRef Name="Travel's_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataBaseModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Details_of_vehicles" EntityType="Self.Details_of_vehicles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hour_of_work_to_driver" EntityType="Self.Hour_of_work_to_driver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passengers" EntityType="Self.Passengers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passengers_to_track" EntityType="Self.Passengers_to_track" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passengers_to_travels" EntityType="Self.Passengers_to_travels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Track_to_travel" EntityType="Self.Track_to_travel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Travels" EntityType="Self.Travels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_of_vehicles" EntityType="Self.Type_of_vehicles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Details_of_vehicles_ToTable" Association="Self.FK_Details_of_vehicles_ToTable">
+            <End Role="Type_of_vehicles" EntitySet="Type_of_vehicles" />
+            <End Role="Details_of_vehicles" EntitySet="Details_of_vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hour_of_work_to_driver_ToTable" Association="Self.FK_Hour_of_work_to_driver_ToTable">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Hour_of_work_to_driver" EntitySet="Hour_of_work_to_driver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_to_track_ToTable" Association="Self.FK_Passengers_to_track_ToTable">
+            <End Role="Passengers" EntitySet="Passengers" />
+            <End Role="Passengers_to_track" EntitySet="Passengers_to_track" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_to_track_ToTable_1" Association="Self.FK_Passengers_to_track_ToTable_1">
+            <End Role="Travels" EntitySet="Travels" />
+            <End Role="Passengers_to_track" EntitySet="Passengers_to_track" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_to_travels_ToTable" Association="Self.FK_Passengers_to_travels_ToTable">
+            <End Role="Passengers" EntitySet="Passengers" />
+            <End Role="Passengers_to_travels" EntitySet="Passengers_to_travels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_to_travels_ToTable_1" Association="Self.FK_Passengers_to_travels_ToTable_1">
+            <End Role="Travels" EntitySet="Travels" />
+            <End Role="Passengers_to_travels" EntitySet="Passengers_to_travels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_ToTable" Association="Self.FK_Passengers_ToTable">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Track_to_travel_ToTable" Association="Self.FK_Track_to_travel_ToTable">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Track_to_travel" EntitySet="Track_to_travel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Track_to_travel_ToTable_1" Association="Self.FK_Track_to_travel_ToTable_1">
+            <End Role="Details_of_vehicles" EntitySet="Details_of_vehicles" />
+            <End Role="Track_to_travel" EntitySet="Track_to_travel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Track_to_travel_ToTable_2" Association="Self.FK_Track_to_travel_ToTable_2">
+            <End Role="Travels" EntitySet="Travels" />
+            <End Role="Track_to_travel" EntitySet="Track_to_travel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Group_s_code" />
+          </Key>
+          <Property Name="Group_s_code" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Conected_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Conected_phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Group_s_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Passengers" Relationship="Self.FK_Passengers_ToTable" FromRole="Customers" ToRole="Passengers" />
+        </EntityType>
+        <EntityType Name="Details_of_vehicles">
+          <Key>
+            <PropertyRef Name="License_plate" />
+          </Key>
+          <Property Name="License_plate" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="several_places" Type="Int32" Nullable="false" />
+          <Property Name="Quantity_of_fuel_per_km" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Type_of_vehicles" Relationship="Self.FK_Details_of_vehicles_ToTable" FromRole="Details_of_vehicles" ToRole="Type_of_vehicles" />
+          <NavigationProperty Name="Track_to_travel" Relationship="Self.FK_Track_to_travel_ToTable_1" FromRole="Details_of_vehicles" ToRole="Track_to_travel" />
+        </EntityType>
+        <EntityType Name="Hour_of_work_to_driver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Driver_s_code" Type="Int32" Nullable="false" />
+          <Property Name="Day" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Work_from_hour" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Work_to_hour" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Hour_of_work_to_driver_ToTable" FromRole="Hour_of_work_to_driver" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Passengers">
+          <Key>
+            <PropertyRef Name="Passenger_s_code" />
+          </Key>
+          <Property Name="Passenger_s_code" Type="Int32" Nullable="false" />
+          <Property Name="Group_s_code" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Passenger_s_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Passenger_s_address" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Passengers_ToTable" FromRole="Passengers" ToRole="Customers" />
+          <NavigationProperty Name="Passengers_to_track" Relationship="Self.FK_Passengers_to_track_ToTable" FromRole="Passengers" ToRole="Passengers_to_track" />
+          <NavigationProperty Name="Travels" Relationship="Self.Passengers_to_travels" FromRole="Passengers" ToRole="Travels" />
+        </EntityType>
+        <EntityType Name="Passengers_to_track">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Passenger_s_code" Type="Int32" Nullable="false" />
+          <Property Name="Travel_s_code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Passengers" Relationship="Self.FK_Passengers_to_track_ToTable" FromRole="Passengers_to_track" ToRole="Passengers" />
+          <NavigationProperty Name="Travels" Relationship="Self.FK_Passengers_to_track_ToTable_1" FromRole="Passengers_to_track" ToRole="Travels" />
+        </EntityType>
+        <EntityType Name="Track_to_travel">
+          <Key>
+            <PropertyRef Name="Track_s_code" />
+          </Key>
+          <Property Name="Track_s_code" Type="Int32" Nullable="false" />
+          <Property Name="Travel_s_code" Type="Int32" Nullable="false" />
+          <Property Name="Driver_s_Id" Type="Int32" Nullable="false" />
+          <Property Name="License_plate" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_of_travel" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Hour_of_begin" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Details_of_vehicles" Relationship="Self.FK_Track_to_travel_ToTable_1" FromRole="Track_to_travel" ToRole="Details_of_vehicles" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Track_to_travel_ToTable" FromRole="Track_to_travel" ToRole="Users" />
+          <NavigationProperty Name="Travels" Relationship="Self.FK_Track_to_travel_ToTable_2" FromRole="Track_to_travel" ToRole="Travels" />
+        </EntityType>
+        <EntityType Name="Travels">
+          <Key>
+            <PropertyRef Name="Travel_s_code" />
+          </Key>
+          <Property Name="Travel_s_code" Type="Int32" Nullable="false" />
+          <Property Name="Collection_or_dispersing" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Destination_or_source" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hour" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Frequency" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_of_begin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Date_of_end" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Passengers_to_track" Relationship="Self.FK_Passengers_to_track_ToTable_1" FromRole="Travels" ToRole="Passengers_to_track" />
+          <NavigationProperty Name="Track_to_travel" Relationship="Self.FK_Track_to_travel_ToTable_2" FromRole="Travels" ToRole="Track_to_travel" />
+          <NavigationProperty Name="Passengers" Relationship="Self.Passengers_to_travels" FromRole="Travels" ToRole="Passengers" />
+        </EntityType>
+        <EntityType Name="Type_of_vehicles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Details_of_vehicles" Relationship="Self.FK_Details_of_vehicles_ToTable" FromRole="Type_of_vehicles" ToRole="Details_of_vehicles" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User_s_Id" />
+          </Key>
+          <Property Name="User_s_Id" Type="Int32" Nullable="false" />
+          <Property Name="Name_of_user" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address_of_user" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Phone_of_user" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Permition" Type="DataBaseModel.Permition" />
+          <NavigationProperty Name="Hour_of_work_to_driver" Relationship="Self.FK_Hour_of_work_to_driver_ToTable" FromRole="Users" ToRole="Hour_of_work_to_driver" />
+          <NavigationProperty Name="Track_to_travel" Relationship="Self.FK_Track_to_travel_ToTable" FromRole="Users" ToRole="Track_to_travel" />
+        </EntityType>
+        <Association Name="FK_Passengers_ToTable">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Group_s_code" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="Group_s_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Details_of_vehicles_ToTable">
+          <End Role="Type_of_vehicles" Type="Self.Type_of_vehicles" Multiplicity="1" />
+          <End Role="Details_of_vehicles" Type="Self.Details_of_vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_of_vehicles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Details_of_vehicles">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Track_to_travel_ToTable_1">
+          <End Role="Details_of_vehicles" Type="Self.Details_of_vehicles" Multiplicity="1" />
+          <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Details_of_vehicles">
+              <PropertyRef Name="License_plate" />
+            </Principal>
+            <Dependent Role="Track_to_travel">
+              <PropertyRef Name="License_plate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hour_of_work_to_driver_ToTable">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Hour_of_work_to_driver" Type="Self.Hour_of_work_to_driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_s_Id" />
+            </Principal>
+            <Dependent Role="Hour_of_work_to_driver">
+              <PropertyRef Name="Driver_s_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_to_track_ToTable">
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="1" />
+          <End Role="Passengers_to_track" Type="Self.Passengers_to_track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passengers">
+              <PropertyRef Name="Passenger_s_code" />
+            </Principal>
+            <Dependent Role="Passengers_to_track">
+              <PropertyRef Name="Passenger_s_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_to_track_ToTable_1">
+          <End Role="Travels" Type="Self.Travels" Multiplicity="1" />
+          <End Role="Passengers_to_track" Type="Self.Passengers_to_track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Travels">
+              <PropertyRef Name="Travel_s_code" />
+            </Principal>
+            <Dependent Role="Passengers_to_track">
+              <PropertyRef Name="Travel_s_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Track_to_travel_ToTable">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_s_Id" />
+            </Principal>
+            <Dependent Role="Track_to_travel">
+              <PropertyRef Name="Driver_s_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Track_to_travel_ToTable_2">
+          <End Role="Travels" Type="Self.Travels" Multiplicity="1" />
+          <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Travels">
+              <PropertyRef Name="Travel_s_code" />
+            </Principal>
+            <Dependent Role="Track_to_travel">
+              <PropertyRef Name="Travel_s_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Passengers_to_travels">
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="*" />
+          <End Role="Travels" Type="Self.Travels" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DataBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customers" />
+          <EntitySet Name="Details_of_vehicles" EntityType="Self.Details_of_vehicles" />
+          <EntitySet Name="Hour_of_work_to_driver" EntityType="Self.Hour_of_work_to_driver" />
+          <EntitySet Name="Passengers" EntityType="Self.Passengers" />
+          <EntitySet Name="Passengers_to_track" EntityType="Self.Passengers_to_track" />
+          <EntitySet Name="Track_to_travel" EntityType="Self.Track_to_travel" />
+          <EntitySet Name="Travels" EntityType="Self.Travels" />
+          <EntitySet Name="Type_of_vehicles" EntityType="Self.Type_of_vehicles" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Passengers_ToTable" Association="Self.FK_Passengers_ToTable">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Details_of_vehicles_ToTable" Association="Self.FK_Details_of_vehicles_ToTable">
+            <End Role="Type_of_vehicles" EntitySet="Type_of_vehicles" />
+            <End Role="Details_of_vehicles" EntitySet="Details_of_vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Track_to_travel_ToTable_1" Association="Self.FK_Track_to_travel_ToTable_1">
+            <End Role="Details_of_vehicles" EntitySet="Details_of_vehicles" />
+            <End Role="Track_to_travel" EntitySet="Track_to_travel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hour_of_work_to_driver_ToTable" Association="Self.FK_Hour_of_work_to_driver_ToTable">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Hour_of_work_to_driver" EntitySet="Hour_of_work_to_driver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_to_track_ToTable" Association="Self.FK_Passengers_to_track_ToTable">
+            <End Role="Passengers" EntitySet="Passengers" />
+            <End Role="Passengers_to_track" EntitySet="Passengers_to_track" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_to_track_ToTable_1" Association="Self.FK_Passengers_to_track_ToTable_1">
+            <End Role="Travels" EntitySet="Travels" />
+            <End Role="Passengers_to_track" EntitySet="Passengers_to_track" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Track_to_travel_ToTable" Association="Self.FK_Track_to_travel_ToTable">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Track_to_travel" EntitySet="Track_to_travel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Track_to_travel_ToTable_2" Association="Self.FK_Track_to_travel_ToTable_2">
+            <End Role="Travels" EntitySet="Travels" />
+            <End Role="Track_to_travel" EntitySet="Track_to_travel" />
+          </AssociationSet>
+          <AssociationSet Name="Passengers_to_travels" Association="Self.Passengers_to_travels">
+            <End Role="Passengers" EntitySet="Passengers" />
+            <End Role="Travels" EntitySet="Travels" />
+          </AssociationSet>
+        </EntityContainer>
+        <EnumType Name="Permition">
+          <Member Name="Admin" Value="1" />
+          <Member Name="Secretary" Value="2" />
+          <Member Name="Driver" Value="3" />
+        </EnumType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataBaseModelStoreContainer" CdmEntityContainer="DataBaseEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="DataBaseModel.Customers">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Group_s_code" ColumnName="Group's_code" />
+                <ScalarProperty Name="Conected_name" ColumnName="Conected_name" />
+                <ScalarProperty Name="Conected_phone" ColumnName="Conected_phone" />
+                <ScalarProperty Name="Group_s_name" ColumnName="Group's_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Details_of_vehicles">
+            <EntityTypeMapping TypeName="DataBaseModel.Details_of_vehicles">
+              <MappingFragment StoreEntitySet="Details_of_vehicles">
+                <ScalarProperty Name="License_plate" ColumnName="License_plate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="several_places" ColumnName="several_places" />
+                <ScalarProperty Name="Quantity_of_fuel_per_km" ColumnName="Quantity_of_fuel_per_km" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hour_of_work_to_driver">
+            <EntityTypeMapping TypeName="DataBaseModel.Hour_of_work_to_driver">
+              <MappingFragment StoreEntitySet="Hour_of_work_to_driver">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Driver_s_code" ColumnName="Driver's_code" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Work_from_hour" ColumnName="Work_from_hour" />
+                <ScalarProperty Name="Work_to_hour" ColumnName="Work_to_hour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passengers">
+            <EntityTypeMapping TypeName="DataBaseModel.Passengers">
+              <MappingFragment StoreEntitySet="Passengers">
+                <ScalarProperty Name="Passenger_s_code" ColumnName="Passenger's_code" />
+                <ScalarProperty Name="Group_s_code" ColumnName="Group's_code" />
+                <ScalarProperty Name="Passenger_s_name" ColumnName="Passenger's_name" />
+                <ScalarProperty Name="Passenger_s_address" ColumnName="Passenger's_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passengers_to_track">
+            <EntityTypeMapping TypeName="DataBaseModel.Passengers_to_track">
+              <MappingFragment StoreEntitySet="Passengers_to_track">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Passenger_s_code" ColumnName="Passenger's_code" />
+                <ScalarProperty Name="Travel_s_code" ColumnName="Travel's_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Track_to_travel">
+            <EntityTypeMapping TypeName="DataBaseModel.Track_to_travel">
+              <MappingFragment StoreEntitySet="Track_to_travel">
+                <ScalarProperty Name="Track_s_code" ColumnName="Track's_code" />
+                <ScalarProperty Name="Travel_s_code" ColumnName="Travel's_code" />
+                <ScalarProperty Name="Driver_s_Id" ColumnName="Driver's_Id" />
+                <ScalarProperty Name="License_plate" ColumnName="License_plate" />
+                <ScalarProperty Name="Date_of_travel" ColumnName="Date_of_travel" />
+                <ScalarProperty Name="Hour_of_begin" ColumnName="Hour_of_begin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Travels">
+            <EntityTypeMapping TypeName="DataBaseModel.Travels">
+              <MappingFragment StoreEntitySet="Travels">
+                <ScalarProperty Name="Travel_s_code" ColumnName="Travel's_code" />
+                <ScalarProperty Name="Collection_or_dispersing" ColumnName="Collection_or_dispersing" />
+                <ScalarProperty Name="Destination_or_source" ColumnName="Destination_or_source" />
+                <ScalarProperty Name="Hour" ColumnName="Hour" />
+                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+                <ScalarProperty Name="Date_of_begin" ColumnName="Date_of_begin" />
+                <ScalarProperty Name="Date_of_end" ColumnName="Date_of_end" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_of_vehicles">
+            <EntityTypeMapping TypeName="DataBaseModel.Type_of_vehicles">
+              <MappingFragment StoreEntitySet="Type_of_vehicles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DataBaseModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="User_s_Id" ColumnName="User's_Id" />
+                <ScalarProperty Name="Name_of_user" ColumnName="Name_of_user" />
+                <ScalarProperty Name="Address_of_user" ColumnName="Address_of_user" />
+                <ScalarProperty Name="Phone_of_user" ColumnName="Phone_of_user" />
+                <ScalarProperty Name="Permition" ColumnName="Permition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Passengers_to_travels" TypeName="DataBaseModel.Passengers_to_travels" StoreEntitySet="Passengers_to_travels">
+            <EndProperty Name="Passengers">
+              <ScalarProperty Name="Passenger_s_code" ColumnName="Passenger's_code" />
+            </EndProperty>
+            <EndProperty Name="Travels">
+              <ScalarProperty Name="Travel_s_code" ColumnName="Travel's_code" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

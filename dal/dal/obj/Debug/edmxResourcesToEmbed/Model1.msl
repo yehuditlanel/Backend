@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DataBaseModelStoreContainer" CdmEntityContainer="DataBaseEntities">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="DataBaseModel.Customers">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Group_s_code" ColumnName="Group's_code" />
+          <ScalarProperty Name="Conected_name" ColumnName="Conected_name" />
+          <ScalarProperty Name="Conected_phone" ColumnName="Conected_phone" />
+          <ScalarProperty Name="Group_s_name" ColumnName="Group's_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Details_of_vehicles">
+      <EntityTypeMapping TypeName="DataBaseModel.Details_of_vehicles">
+        <MappingFragment StoreEntitySet="Details_of_vehicles">
+          <ScalarProperty Name="License_plate" ColumnName="License_plate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="several_places" ColumnName="several_places" />
+          <ScalarProperty Name="Quantity_of_fuel_per_km" ColumnName="Quantity_of_fuel_per_km" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hour_of_work_to_driver">
+      <EntityTypeMapping TypeName="DataBaseModel.Hour_of_work_to_driver">
+        <MappingFragment StoreEntitySet="Hour_of_work_to_driver">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Driver_s_code" ColumnName="Driver's_code" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="Work_from_hour" ColumnName="Work_from_hour" />
+          <ScalarProperty Name="Work_to_hour" ColumnName="Work_to_hour" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Passengers">
+      <EntityTypeMapping TypeName="DataBaseModel.Passengers">
+        <MappingFragment StoreEntitySet="Passengers">
+          <ScalarProperty Name="Passenger_s_code" ColumnName="Passenger's_code" />
+          <ScalarProperty Name="Group_s_code" ColumnName="Group's_code" />
+          <ScalarProperty Name="Passenger_s_name" ColumnName="Passenger's_name" />
+          <ScalarProperty Name="Passenger_s_address" ColumnName="Passenger's_address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Passengers_to_track">
+      <EntityTypeMapping TypeName="DataBaseModel.Passengers_to_track">
+        <MappingFragment StoreEntitySet="Passengers_to_track">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Passenger_s_code" ColumnName="Passenger's_code" />
+          <ScalarProperty Name="Travel_s_code" ColumnName="Travel's_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Track_to_travel">
+      <EntityTypeMapping TypeName="DataBaseModel.Track_to_travel">
+        <MappingFragment StoreEntitySet="Track_to_travel">
+          <ScalarProperty Name="Track_s_code" ColumnName="Track's_code" />
+          <ScalarProperty Name="Travel_s_code" ColumnName="Travel's_code" />
+          <ScalarProperty Name="Driver_s_Id" ColumnName="Driver's_Id" />
+          <ScalarProperty Name="License_plate" ColumnName="License_plate" />
+          <ScalarProperty Name="Date_of_travel" ColumnName="Date_of_travel" />
+          <ScalarProperty Name="Hour_of_begin" ColumnName="Hour_of_begin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Travels">
+      <EntityTypeMapping TypeName="DataBaseModel.Travels">
+        <MappingFragment StoreEntitySet="Travels">
+          <ScalarProperty Name="Travel_s_code" ColumnName="Travel's_code" />
+          <ScalarProperty Name="Collection_or_dispersing" ColumnName="Collection_or_dispersing" />
+          <ScalarProperty Name="Destination_or_source" ColumnName="Destination_or_source" />
+          <ScalarProperty Name="Hour" ColumnName="Hour" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="Date_of_begin" ColumnName="Date_of_begin" />
+          <ScalarProperty Name="Date_of_end" ColumnName="Date_of_end" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type_of_vehicles">
+      <EntityTypeMapping TypeName="DataBaseModel.Type_of_vehicles">
+        <MappingFragment StoreEntitySet="Type_of_vehicles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DataBaseModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="User_s_Id" ColumnName="User's_Id" />
+          <ScalarProperty Name="Name_of_user" ColumnName="Name_of_user" />
+          <ScalarProperty Name="Address_of_user" ColumnName="Address_of_user" />
+          <ScalarProperty Name="Phone_of_user" ColumnName="Phone_of_user" />
+          <ScalarProperty Name="Permition" ColumnName="Permition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Passengers_to_travels" TypeName="DataBaseModel.Passengers_to_travels" StoreEntitySet="Passengers_to_travels">
+      <EndProperty Name="Passengers">
+        <ScalarProperty Name="Passenger_s_code" ColumnName="Passenger's_code" />
+      </EndProperty>
+      <EndProperty Name="Travels">
+        <ScalarProperty Name="Travel_s_code" ColumnName="Travel's_code" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
