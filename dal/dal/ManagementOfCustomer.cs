@@ -13,22 +13,20 @@ namespace dal
         {
             management_of_customer = new dal.ManagementOfCustomer();
         }
-        public void addCustomer(DetailsOfCustomer detailsOfCustomer)
+        public void AddCustomer(DetailsOfCustomer detailsOfCustomer)
         {
-            //the function ConvertCustomerToDal with this in ()
-            //Customers detailsOfCustomerDal = detailsOfCustomer.ConvertCustomerToDal();
             DataBaseEntities db = new DataBaseEntities();
             db.Customers.Add(detailsOfCustomer.ConvertCustomerToDal());
             db.SaveChanges();
         }
-        public List<DetailsOfCustomer> listOfCustomer()
+        public List<DetailsOfCustomer> GetCustomers()
         {
-            List<Customers> listDetailsOfCustomers;
+            List<Customers> customers;
             using (var DbContext = new DataBaseEntities())
             {
-                listDetailsOfCustomers=DbContext.Customers.ToList();
+                customers = DbContext.Customers.ToList();
             }
-            return listDetailsOfCustomers.Select(c => Mapper.Convert_customer_to_common(c)).ToList();
+            return customers.Select(c => Mapper.ConvertCustomerToCommon(c)).ToList();
         }
     }
 }

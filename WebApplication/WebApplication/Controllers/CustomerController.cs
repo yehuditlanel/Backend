@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using bll;
+using common;
 namespace WebApplication.Controllers
 {
     public class CustomerController : ApiController
@@ -13,7 +14,7 @@ namespace WebApplication.Controllers
         // GET: api/Customer
         public List<common.DetailsOfCustomer> Get()
         {
-            return ManagmentOfCustomer.listOfCustomer();
+            return ManagmentOfCustomer.GetCustomers();
         }
 
         // GET: api/Customer/5
@@ -23,12 +24,13 @@ namespace WebApplication.Controllers
         }
 
         // POST: api/Customer
-        public void Post([FromBody]string value)
+        public void Post([FromBody]DetailsOfCustomer detailsOfCustomer)
         {
+            bll.ManagmentOfCustomer.addCustomer(detailsOfCustomer);
         }
 
         // PUT: api/Customer/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]DetailsOfCustomer detailsOfCustomer)
         {
         }
 

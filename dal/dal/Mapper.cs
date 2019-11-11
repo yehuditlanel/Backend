@@ -54,7 +54,7 @@ namespace dal
             common.DetailsOfUser detailsOfUser = new common.DetailsOfUser(detailOfUserDal.User_s_Id, detailOfUserDal.Name_of_user, detailOfUserDal.Address_of_user, detailOfUserDal.Phone_of_user, common.Permition.Admin);
             return detailsOfUser;
         }
-        public static common.DetailsOfCustomer Convert_customer_to_common(Customers customers)
+        public static common.DetailsOfCustomer ConvertCustomerToCommon(Customers customers)
         {
             common.DetailsOfCustomer detailsOfCustomer = new common.DetailsOfCustomer(customers.Conected_name, customers.Conected_phone, customers.Group_s_code, customers.Group_s_name);
             return detailsOfCustomer;

@@ -21,7 +21,7 @@ namespace bll
         public static void addUser(common.DetailsOfCustomer details_of_customer)
         {
             dal.ManagementOfCustomer management_of_customer = new dal.ManagementOfCustomer();
-            management_of_customer.addCustomer(details_of_customer);
+            management_of_customer.AddCustomer(details_of_customer);
         }
 
 

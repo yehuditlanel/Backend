@@ -9,13 +9,13 @@ namespace bll
 {
     public static class ManagmentOfCustomer
     {
-        public static List<DetailsOfCustomer> listOfCustomer()
+        public static List<DetailsOfCustomer> GetCustomers()
         {
-            return ManagementOfCustomer.management_of_customer.listOfCustomer();
+            return ManagementOfCustomer.management_of_customer.GetCustomers();
         }
         public static void addCustomer(DetailsOfCustomer details_of_customer)
         {
-            ManagementOfCustomer.management_of_customer.addCustomer(details_of_customer);
+            ManagementOfCustomer.management_of_customer.AddCustomer(details_of_customer);
         }
     }
 }
