@@ -9,43 +9,27 @@ namespace bll
 {
     public class ManagmentOfUser
     {
-        public static List<DetailsOfUser> listOfUser()
+        public static List<DetailsOfUser> GetUsers()
         {
-            dal.Users users = new dal.Users();
-            List<DetailsOfUser> listDetailsOfUser =
-                dal.ManagementOfUser.management_of_user.listOfUser();
-            return listDetailsOfUser;
-
-
+            return ManagementOfUser.management_of_user.GetUsers();
+            //dal.Users users = new dal.Users();
+            //List<DetailsOfUser> listDetailsOfUser =
+            //    dal.ManagementOfUser.management_of_user.listOfUser();
+            //return listDetailsOfUser;
         }
-        public static void addUser(common.DetailsOfCustomer details_of_customer)
+        public static void addUser(DetailsOfUser detailsOfUser)
         {
-            dal.ManagementOfCustomer management_of_customer = new dal.ManagementOfCustomer();
-            management_of_customer.AddCustomer(details_of_customer);
+            ManagementOfUser.management_of_user.AddUser(detailsOfUser);
+            //dal.ManagementOfCustomer management_of_customer = new dal.ManagementOfCustomer();
+            //management_of_customer.AddCustomer(details_of_customer);
         }
-
-
-
-
-
-
-
-
-
-        //public static Boolean logIn(DetailsOfUser detailsOfUser)
-        //{
-        //    return false;
-        //}
-        //public static void addVehicles(common.Details_of_vehicles details_of_vehicles)
-        //{
-        //    dal.Management_of_vehicles management_of_vehicles = new dal.Management_of_vehicles();
-        //    management_of_vehicles.addVehicles(details_of_vehicles);
-        //}
-        //public static List<common.Details_of_vehicles> viewVehicles()
-        //{
-        //    dal.Management_of_vehicles management_Of_Vehicles = new dal.Management_of_vehicles();
-        //    List<common.Details_of_vehicles> list = management_Of_Vehicles.viewVehicles();
-        //    return list;
-        //}
+        public static void RemoveUser(int id)
+        {
+            ManagementOfUser.management_of_user.RemoveUser(id);
+        }
+        public static void UpdateUser(DetailsOfUser detailsOfUser)
+        {
+            ManagementOfUser.management_of_user.UpdateUser(detailsOfUser);
+        }
     }
 }

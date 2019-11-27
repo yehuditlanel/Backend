@@ -8,22 +8,49 @@ namespace dal
 {
    public  class ManagementOfVehicles
     {
-        public void addVehicles(common.Details_of_vehicles details_Of_Vehicles)
+        public static ManagementOfVehicles management_of_vehicles;
+        static ManagementOfVehicles()
         {
-            Details_of_vehicles details_Of_Vehicles_dal = new Details_of_vehicles();
-            details_Of_Vehicles_dal = details_Of_Vehicles.Convert_vehicles_to__dal();
+            management_of_vehicles = new ManagementOfVehicles();
+        }
+
+       public void AddVehicle(DetialsOfVehicles detialsOfVehicles)
+        {
             DataBaseEntities db = new DataBaseEntities();
-            db.Details_of_vehicles.Add(details_Of_Vehicles_dal);
+            db.Details_of_vehicles.Add(detialsOfVehicles.ConvertVehiclesIoDal());
             db.SaveChanges();
         }
-        public List<common.Details_of_vehicles> viewVehicles()
+       public List<DetialsOfVehicles> GetVehicles()
         {
-            List<common.Details_of_vehicles> details_Of_Vehicles;
-            DataBaseEntities db = new DataBaseEntities();
-            List<Details_of_vehicles> list = db.Details_of_vehicles.ToList<Details_of_vehicles>();
-            details_Of_Vehicles = list.Select<Details_of_vehicles, common.Details_of_vehicles>(v => Mapper.Convert_to_common(v)).ToList<common.Details_of_vehicles>(); ;
+            List<Details_of_vehicles> details_Of_Vehicles;
+            using(var DbContext=new DataBaseEntities())
+            {
+                details_Of_Vehicles = DbContext.Details_of_vehicles.ToList();
+            }
+            return details_Of_Vehicles.Select(v => Mapper.ConvertVehicleToCommon(v)).ToList();
+        }
+        //public void RemoveVehicle(int id)
+        //{
+        //    string i = id.ToString();
+        //    using (var db = new DataBaseEntities())
+        //    {
+        //        de c = db.Customers.Find(i);
+        //        if (c != null)
+        //        {
+        //            db.Customers.Remove(c);
+        //            db.SaveChanges();
+        //        }
+        //    }
+        //}
 
-            return details_Of_Vehicles;
+        public void UpdateVehicle(DetialsOfVehicles detialsOfVehicles)
+        {
+            Details_of_vehicles details_Of_Vehicles = Mapper.ConvertVehiclesIoDal(detialsOfVehicles);
+            using (var db = new DataBaseEntities())
+            {
+                db.Entry<Details_of_vehicles>(db.Set<Details_of_vehicles>().Find(details_Of_Vehicles.License_plate)).CurrentValues.SetValues(details_Of_Vehicles);
+                db.SaveChanges();
+            }
         }
     }
 }

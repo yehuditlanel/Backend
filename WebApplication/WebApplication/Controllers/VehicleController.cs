@@ -11,9 +11,9 @@ namespace WebApplication.Controllers
     public class VehicleController : ApiController
     {
         // GET: api/Vehicle
-        public List<common.Details_of_vehicles> Get()
+        public List<DetialsOfVehicles> Get()
         {
-            return Management_of_vehicles.viewVehicles();
+            return ManagementOfVehicle.GetVehicles();
         }
 
         // GET: api/Vehicle/5
@@ -23,13 +23,15 @@ namespace WebApplication.Controllers
         }
 
         // POST: api/Vehicle
-        public void Post([FromBody]string value)
+        public void Post([FromBody]DetialsOfVehicles detialsOfVehicles)
         {
+            ManagementOfVehicle.AddVehicle(detialsOfVehicles);
         }
 
         // PUT: api/Vehicle/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]DetialsOfVehicles detialsOfVehicles)
         {
+            ManagementOfVehicle.UpdateVehicle(detialsOfVehicles);
         }
 
         // DELETE: api/Vehicle/5

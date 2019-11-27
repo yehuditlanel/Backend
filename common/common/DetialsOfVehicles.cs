@@ -6,21 +6,13 @@ using System.Threading.Tasks;
 
 namespace common
 {
-    public  class Details_of_vehicles
+    public class DetialsOfVehicles
     {
-        public Details_of_vehicles(string license_plate, int several_places, float quantity_of_fuel_per_km, int type=0 )
+        public DetialsOfVehicles(string license_plate, int several_places, double quantity_of_fuel_per_km, int type)
         {
             this.license_plate = license_plate;
-            this.type = type;
             this.several_places = several_places;
             this.quantity_of_fuel_per_km = quantity_of_fuel_per_km;
-        }
-
-        public Details_of_vehicles(string license_plate, int several_places, double quantity_of_fuel_per_km1, int type)
-        {
-            this.license_plate = license_plate;
-            this.several_places = several_places;
-            this.quantity_of_fuel_per_km1 = quantity_of_fuel_per_km1;
             this.type = type;
         }
 
@@ -48,14 +40,12 @@ namespace common
             set { several_places = value; }
         }
 
-        private float quantity_of_fuel_per_km;
-        private double quantity_of_fuel_per_km1;
+        private double quantity_of_fuel_per_km;
 
-        public float Quantity_of_fuel_per_km
+        public double Quantity_of_fuel_per_km
         {
             get { return quantity_of_fuel_per_km; }
             set { quantity_of_fuel_per_km = value; }
         }
-
     }
 }

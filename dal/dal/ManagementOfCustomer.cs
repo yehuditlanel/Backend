@@ -28,5 +28,28 @@ namespace dal
             }
             return customers.Select(c => Mapper.ConvertCustomerToCommon(c)).ToList();
         }
+        public void RemoveCustomer(int id)
+        {
+            string i = id.ToString();
+            using (var db = new DataBaseEntities())
+            {
+                Customers c= db.Customers.Find(i);
+                if (c != null)
+                {
+                    db.Customers.Remove(c);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public void UpdateCustomer(DetailsOfCustomer detailsOfCustomer)
+        {
+            Customers customers = Mapper.ConvertCustomerToDal(detailsOfCustomer);
+            using(var db=new DataBaseEntities())
+            {
+                db.Entry<Customers>(db.Set<Customers>().Find(customers.Group_s_code)).CurrentValues.SetValues(customers);
+                db.SaveChanges();
+            }
+        }
     }
 }

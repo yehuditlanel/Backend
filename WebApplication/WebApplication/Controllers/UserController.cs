@@ -4,18 +4,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using bll;
+using common;
 namespace WebApplication.Controllers
 {
     public class UserController : ApiController
     {
         // GET: api/User
-        public List<common.DetailsOfUser> Get()
+        public List<DetailsOfUser> Get()
         {
-            List<common.DetailsOfUser> usersList = new List<common.DetailsOfUser>();
-            usersList =
-                bll.ManagmentOfUser.listOfUser();
-            return usersList;
+            return ManagmentOfUser.GetUsers();
         }
 
         // GET: api/User/5
@@ -25,18 +23,21 @@ namespace WebApplication.Controllers
         }
 
         // POST: api/User
-        public void Post([FromBody]string value)
+        public void Post([FromBody]DetailsOfUser detailsOfUser)
         {
+            ManagmentOfUser.addUser(detailsOfUser);
         }
 
         // PUT: api/User/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]DetailsOfUser detailsOfUser)
         {
+            ManagmentOfUser.UpdateUser(detailsOfUser);
         }
 
         // DELETE: api/User/5
         public void Delete(int id)
         {
+            ManagmentOfUser.RemoveUser(id);
         }
     }
 }

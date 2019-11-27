@@ -8,23 +8,22 @@ namespace dal
 {
     public static class Mapper
     {
-        public static Details_of_vehicles Convert_vehicles_to__dal(this common.Details_of_vehicles details_Of_Vehicles)
+        public static Details_of_vehicles ConvertVehiclesIoDal(this common.DetialsOfVehicles detialsOfVehicles)
         {
             Details_of_vehicles details_Of_Vehicles_dal = new Details_of_vehicles();
-            details_Of_Vehicles_dal.License_plate = details_Of_Vehicles.License_plate;
-            details_Of_Vehicles_dal.Type = details_Of_Vehicles.Type;
-            details_Of_Vehicles_dal.several_places = details_Of_Vehicles.Several_places;
-            details_Of_Vehicles_dal.Quantity_of_fuel_per_km = details_Of_Vehicles.Quantity_of_fuel_per_km;
+            details_Of_Vehicles_dal.License_plate = detialsOfVehicles.License_plate;
+            details_Of_Vehicles_dal.Type = detialsOfVehicles.Type;
+            details_Of_Vehicles_dal.several_places = detialsOfVehicles.Several_places;
+            details_Of_Vehicles_dal.Quantity_of_fuel_per_km = detialsOfVehicles.Quantity_of_fuel_per_km;
             return details_Of_Vehicles_dal;
         }
 
-        public static common.Details_of_vehicles Convert_to_common(Details_of_vehicles details_Of_Vehicles_dal)
+        public static DetialsOfVehicles ConvertVehicleToCommon(Details_of_vehicles detialsOfVehicles)
         {
-            common.Details_of_vehicles details_of_viehcles = new common.Details_of_vehicles(details_Of_Vehicles_dal.License_plate, details_Of_Vehicles_dal.several_places, details_Of_Vehicles_dal.Quantity_of_fuel_per_km, details_Of_Vehicles_dal.Type);
-            return details_of_viehcles;
+            return new DetialsOfVehicles(detialsOfVehicles.License_plate, detialsOfVehicles.several_places, detialsOfVehicles.Quantity_of_fuel_per_km, detialsOfVehicles.Type);
         }
 
-        public static dal.Users ConvertUserToDal(this common.DetailsOfUser detailsOfUser)
+        public static Users ConvertUserToDal(this common.DetailsOfUser detailsOfUser)
         {
             Users detailsOfUserDal = new Users();
             detailsOfUserDal.User_s_Id = detailsOfUser.userId;
@@ -48,16 +47,15 @@ namespace dal
             return detailsOfUserDal;
         }
 
-        public static common.DetailsOfUser ConvertUserToCommon(Users detailOfUserDal)
+        public static DetailsOfUser ConvertUserToCommon(Users detailOfUserDal)
         {
             //fix to mapper the permition
-            common.DetailsOfUser detailsOfUser = new common.DetailsOfUser(detailOfUserDal.User_s_Id, detailOfUserDal.Name_of_user, detailOfUserDal.Address_of_user, detailOfUserDal.Phone_of_user, common.Permition.Admin);
-            return detailsOfUser;
+            return new common.DetailsOfUser(detailOfUserDal.User_s_Id, detailOfUserDal.Name_of_user, detailOfUserDal.Address_of_user, detailOfUserDal.Phone_of_user, common.Permition.Admin);
+            
         }
-        public static common.DetailsOfCustomer ConvertCustomerToCommon(Customers customers)
+        public static DetailsOfCustomer ConvertCustomerToCommon(Customers customers)
         {
-            common.DetailsOfCustomer detailsOfCustomer = new common.DetailsOfCustomer(customers.Conected_name, customers.Conected_phone, customers.Group_s_code, customers.Group_s_name);
-            return detailsOfCustomer;
+            return new DetailsOfCustomer(customers.Conected_name, customers.Conected_phone, customers.Group_s_code, customers.Group_s_name);
         }
 
         public static Customers ConvertCustomerToDal(this common.DetailsOfCustomer detailsOfCustomer)

@@ -26,17 +26,19 @@ namespace WebApplication.Controllers
         // POST: api/Customer
         public void Post([FromBody]DetailsOfCustomer detailsOfCustomer)
         {
-            bll.ManagmentOfCustomer.addCustomer(detailsOfCustomer);
+            ManagmentOfCustomer.addCustomer(detailsOfCustomer);
         }
 
         // PUT: api/Customer/5
-        public void Put(int id, [FromBody]DetailsOfCustomer detailsOfCustomer)
+        public void Put([FromBody]DetailsOfCustomer detailsOfCustomer)
         {
+            ManagmentOfCustomer.UpdateCustomer(detailsOfCustomer);
         }
 
         // DELETE: api/Customer/5
         public void Delete(int id)
         {
+            ManagmentOfCustomer.RemoveCustomer(id);
         }
     }
 }
