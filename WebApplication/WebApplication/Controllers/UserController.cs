@@ -29,7 +29,7 @@ namespace WebApplication.Controllers
         }
 
         // PUT: api/User/5
-        public void Put(int id, [FromBody]DetailsOfUser detailsOfUser)
+        public void Put([FromBody]DetailsOfUser detailsOfUser)
         {
             ManagmentOfUser.UpdateUser(detailsOfUser);
         }

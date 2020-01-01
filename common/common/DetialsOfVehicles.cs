@@ -8,7 +8,7 @@ namespace common
 {
     public class DetialsOfVehicles
     {
-        public DetialsOfVehicles(string license_plate, int several_places, double quantity_of_fuel_per_km, int type)
+        public DetialsOfVehicles(string license_plate, int several_places, double quantity_of_fuel_per_km, string type)
         {
             this.license_plate = license_plate;
             this.several_places = several_places;
@@ -24,9 +24,9 @@ namespace common
             set { license_plate = value; }
         }
 
-        private int type;
+        private string type;
 
-        public int Type
+        public string Type
         {
             get { return type; }
             set { type = value; }

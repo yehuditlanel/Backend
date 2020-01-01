@@ -15,14 +15,6 @@ namespace dal
         {
             management_of_user = new dal.ManagementOfUser();
         }
-        //public List<DetailsOfUser> listOfUser()
-        //{
-        //    List<Users> listDetailsOfUser;
-        //    DataBaseEntities db = new DataBaseEntities();
-        //    listDetailsOfUser = db.Users.ToList<Users>();
-        //    List<DetailsOfUser> listUser = listDetailsOfUser.Select<Users, DetailsOfUser>(m => Mapper.ConvertUserToCommon(m)).ToList<DetailsOfUser>();
-        //    return listUser;
-        //}
         public void AddUser(DetailsOfUser detailsOfUser)
         {
             DataBaseEntities db = new DataBaseEntities();
@@ -34,7 +26,7 @@ namespace dal
             List<Users> users;
             using (var DbContext = new DataBaseEntities())
             {
-                users = DbContext.Users.ToList();
+                users = DbContext.Users.Where(u=>u.Permition==dal.Permition.Driver).ToList();
             }
             return users.Select(u => Mapper.ConvertUserToCommon(u)).ToList();
         }

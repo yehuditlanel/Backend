@@ -36,7 +36,7 @@ namespace WebApplication.Controllers
         }
 
         // DELETE: api/Customer/5
-        public void Delete(int id)
+        public void Delete(string id)
         {
             ManagmentOfCustomer.RemoveCustomer(id);
         }
