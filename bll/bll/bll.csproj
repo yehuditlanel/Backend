@@ -42,7 +42,10 @@
   <ItemGroup>
     <Compile Include="ManagementOfVehicle.cs" />
     <Compile Include="ManagmentOfCustomer.cs" />
+    <Compile Include="ManagmentOfPassenger.cs" />
+    <Compile Include="ManagmentOfTravel.cs" />
     <Compile Include="ManagmentOfUser.cs" />
+    <Compile Include="ManagmentOTrack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
