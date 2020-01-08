@@ -17,10 +17,10 @@ namespace bll
         {
             ManagementOfVehicles.management_of_vehicles.AddVehicle(detialsOfVehicles);
         }
-        //public static void RemoveCustomer(int id)
-        //{
-        //    ManagementOfCustomer.management_of_customer.RemoveCustomer(id);
-        //}
+        public static void RemoveVehicle(int id)
+        {
+            ManagementOfVehicles.management_of_vehicles.RemoveVehicle(id);
+        }
         public static void UpdateVehicle(DetialsOfVehicles detialsOfVehicles)
         {
             ManagementOfVehicles.management_of_vehicles.UpdateVehicle(detialsOfVehicles);

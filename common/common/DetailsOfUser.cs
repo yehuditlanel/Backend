@@ -9,42 +9,6 @@ namespace common
     public enum Permition { Admin,Secretary,Driver };
     public class DetailsOfUser
     {
-        //private int user_s_Id;
-        //private string name_of_user;
-        //private string address_of_user;
-        //private string phone_of_user;
-        //private int? permition1;
-
-        //public DetailsOfUser(int userId,string nameOfUser,string addressOfUser,string phoneOfUser,Permition permition)
-        //{
-        //    this.UserId = userId;
-        //    this.NameOfUser = nameOfUser;
-        //    this.AddressOfUser = addressOfUser;
-        //    this.PhoneOfUser = phoneOfUser;
-        //    this.Permition = permition;
-
-        //}
-
-        //public DetailsOfUser(int user_s_Id, string name_of_user, string address_of_user, string phone_of_user, int? permition1)
-        //{
-        //    this.user_s_Id = user_s_Id;
-        //    this.name_of_user = name_of_user;
-        //    this.address_of_user = address_of_user;
-        //    this.phone_of_user = phone_of_user;
-        //    this.permition1 = permition1;
-        //}
-
-        //public int UserId { get; set; }
-        //public string NameOfUser { get; set; }
-        //public string AddressOfUser { get; set; }
-        //public string PhoneOfUser { get; set; }
-        //public Permition Permition { get; set; }
-        //public string Password { get; set; }
-        //private int user_s_Id;
-        //private string name_of_user;
-        //private string address_of_user;
-        //private string phone_of_user;
-        //private int? permition;
         private int userId;
 
         public int UserId

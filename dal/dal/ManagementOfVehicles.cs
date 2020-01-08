@@ -29,19 +29,19 @@ namespace dal
             }
             return details_Of_Vehicles.Select(v => Mapper.ConvertVehicleToCommon(v)).ToList();
         }
-        //public void RemoveVehicle(int id)
-        //{
-        //    string i = id.ToString();
-        //    using (var db = new DataBaseEntities())
-        //    {
-        //        de c = db.Customers.Find(i);
-        //        if (c != null)
-        //        {
-        //            db.Customers.Remove(c);
-        //            db.SaveChanges();
-        //        }
-        //    }
-        //}
+        public void RemoveVehicle(int id)
+        {
+            string i = id.ToString();
+            using (var db = new DataBaseEntities())
+            {
+                Details_of_vehicles c = db.Details_of_vehicles.Find(i);
+                if (c != null)
+                {
+                    db.Details_of_vehicles.Remove(c);
+                    db.SaveChanges();
+                }
+            }
+        }
 
         public void UpdateVehicle(DetialsOfVehicles detialsOfVehicles)
         {

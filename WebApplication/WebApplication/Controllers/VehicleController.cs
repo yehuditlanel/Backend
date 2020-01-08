@@ -29,7 +29,7 @@ namespace WebApplication.Controllers
         }
 
         // PUT: api/Vehicle/5
-        public void Put(int id, [FromBody]DetialsOfVehicles detialsOfVehicles)
+        public void Put([FromBody]DetialsOfVehicles detialsOfVehicles)
         {
             ManagementOfVehicle.UpdateVehicle(detialsOfVehicles);
         }
@@ -37,6 +37,7 @@ namespace WebApplication.Controllers
         // DELETE: api/Vehicle/5
         public void Delete(int id)
         {
+            ManagementOfVehicle.RemoveVehicle(id);
         }
     }
 }

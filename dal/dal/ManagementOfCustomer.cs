@@ -30,14 +30,6 @@ namespace dal
         }
         public void RemoveCustomer(string id)
         {
-            //var student = new Student() { StudentId = 1 };
-
-            //using (var context = new SchoolDBEntities())
-            //{
-            //    context.Entry(student).State = System.Data.Entity.EntityState.Deleted;
-
-            //    context.SaveChanges();
-            //}
             using (var db = new DataBaseEntities())
             {
                 // db.Entry(db.Customers.Find(id)).State = System.Data.Entity.EntityState.Deleted;
