@@ -96,3 +96,17 @@ C:\Users\יהודית לנאל\Desktop\project from github\Backend\bll\bll\obj\D
 C:\Users\יהודית לנאל\Desktop\project from github\Backend\bll\bll\obj\Debug\bll.csproj.CopyComplete
 C:\Users\יהודית לנאל\Desktop\project from github\Backend\bll\bll\obj\Debug\bll.dll
 C:\Users\יהודית לנאל\Desktop\project from github\Backend\bll\bll\obj\Debug\bll.pdb
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\bin\Debug\bll.dll
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\bin\Debug\bll.pdb
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\bin\Debug\common.dll
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\bin\Debug\dal.dll
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\bin\Debug\EntityFramework.dll
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\bin\Debug\common.pdb
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\bin\Debug\dal.pdb
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\bin\Debug\dal.dll.config
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\bin\Debug\EntityFramework.xml
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\obj\Debug\bll.csprojAssemblyReference.cache
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\obj\Debug\bll.csproj.CoreCompileInputs.cache
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\obj\Debug\bll.csproj.CopyComplete
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\obj\Debug\bll.dll
+C:\Users\Rachel\Desktop\git\Car2TrackBackend\bll\bll\obj\Debug\bll.pdb

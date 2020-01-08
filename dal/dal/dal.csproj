@@ -75,6 +75,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ManagementOfCustomer.cs" />
+    <Compile Include="ManagementOfPassenger.cs" />
+    <Compile Include="ManagementOfTrack.cs" />
+    <Compile Include="ManagementOfTravel.cs" />
     <Compile Include="ManagementOfUser.cs" />
     <Compile Include="ManagementOfVehicles.cs" />
     <Compile Include="Mapper.cs" />

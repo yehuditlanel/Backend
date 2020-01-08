@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DetailsOfCustomer.cs" />
+    <Compile Include="DetailsOfPassenger.cs" />
+    <Compile Include="DetailsOfTrack.cs" />
+    <Compile Include="DetailsOfTravel.cs" />
     <Compile Include="DetailsOfUser.cs" />
     <Compile Include="DetialsOfVehicles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
