@@ -4,15 +4,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using bll;
+using common;
 namespace WebApplication.Controllers
 {
     public class TravelController : ApiController
     {
         // GET: api/Travel
-        public IEnumerable<string> Get()
+        public List<common.DetailsOfTravel> Get()
         {
-            return new string[] { "value1", "value2" };
+            return ManagmentOfTravel.GetTravels();
         }
 
         // GET: api/Travel/5
@@ -22,18 +23,23 @@ namespace WebApplication.Controllers
         }
 
         // POST: api/Travel
-        public void Post([FromBody]string value)
+        public void Post([FromBody]DetailsOfTravel detailsOfTravel)
         {
+            ManagmentOfTravel.AddTravel(detailsOfTravel);
         }
 
         // PUT: api/Travel/5
-        public void Put(int id, [FromBody]string value)
+        public void Put([FromBody]DetailsOfTravel detailsOfTravel)
         {
+            //maybe need to update the tracks...
+            ManagmentOfTravel.UpdateTravel(detailsOfTravel);
         }
 
         // DELETE: api/Travel/5
-        public void Delete(int id)
+        public void Delete(string id)
         {
+            //need to delete also all the tracks...
+            ManagmentOfTravel.RemoveTravel(id);
         }
     }
 }

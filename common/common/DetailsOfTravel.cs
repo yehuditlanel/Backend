@@ -8,7 +8,7 @@ namespace common
 {
     public class DetailsOfTravel
     {
-        public DetailsOfTravel(int travelCode,string collectionOrDispersing,string destinationOrSource,DateTime hour,string frequency,DateTime dateOfBegin,DateTime dateOfEnd)
+        public DetailsOfTravel(int travelCode,string collectionOrDispersing,string destinationOrSource,TimeSpan hour,string frequency,DateTime dateOfBegin,DateTime dateOfEnd)
         {
             this.travelCode = travelCode;
             this.collectionOrDispersing = collectionOrDispersing;
@@ -36,12 +36,12 @@ namespace common
 
         public string DestinationOrSource
         {
-            get { return collectionOrDispersing; }
-            set { collectionOrDispersing = value; }
+            get { return destinationOrSource; }
+            set { destinationOrSource = value; }
         }
-        private DateTime hour;
+        private TimeSpan hour;
 
-        public DateTime Hour
+        public TimeSpan Hour
         {
             get { return hour; }
             set { hour = value; }
@@ -66,8 +66,8 @@ namespace common
 
         public DateTime DateOfEnd
         {
-            get { return dateOfBegin; }
-            set { dateOfBegin = value; }
+            get { return dateOfEnd; }
+            set { dateOfEnd = value; }
         }
     }
 }

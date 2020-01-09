@@ -76,6 +76,50 @@ namespace dal
             detailsOfCustomerDal.Group_s_name = detailsOfCustomer.Group_s_name;
             return detailsOfCustomerDal;
         }
+        public static DetailsOfTravel ConvertTravelToCommon(Travels travels)
+        {
+            return new DetailsOfTravel(travels.Travel_s_code,travels.Collection_or_dispersing,travels.Destination_or_source,travels.Hour,travels.Frequency,travels.Date_of_begin,travels.Date_of_end);
+        }
+        public static Travels ConvertTravelToDal(this common.DetailsOfTravel detailsOfTravel)
+        {
+            Travels detailsOfTravelDal = new Travels();
+            detailsOfTravelDal.Travel_s_code = detailsOfTravel.TravelCode;
+            detailsOfTravelDal.Collection_or_dispersing = detailsOfTravel.CollectionOrDispersing;
+            detailsOfTravelDal.Destination_or_source = detailsOfTravel.DestinationOrSource;
+            detailsOfTravelDal.Hour = detailsOfTravel.Hour;
+            detailsOfTravelDal.Frequency = detailsOfTravel.Frequency;
+            detailsOfTravelDal.Date_of_begin = detailsOfTravel.DateOfBegin;
+            detailsOfTravelDal.Date_of_end = detailsOfTravel.DateOfEnd;
+            return detailsOfTravelDal;
+        }
+        public static DetailsOfTrack ConvertTrackToCommon(Track_to_travel track)
+        {
+            return new DetailsOfTrack(track.Track_s_code,track.Travel_s_code,track.Driver_s_Id,track.License_plate,track.Date_of_travel,track.Hour_of_begin);
+        }
+        public static Track_to_travel ConvertTrackToDal(this common.DetailsOfTrack detailsOfTrack)
+        {
+            Track_to_travel detailsOfTrackDal = new Track_to_travel();
+            detailsOfTrackDal.Track_s_code = detailsOfTrack.TrackCode;
+            detailsOfTrackDal.Travel_s_code = detailsOfTrack.TravelCode;
+            detailsOfTrackDal.Driver_s_Id = detailsOfTrack.DriverId;
+            detailsOfTrackDal.License_plate = detailsOfTrack.LicensePlate;
+            detailsOfTrackDal.Date_of_travel = detailsOfTrack.DateOfTravel;
+            detailsOfTrackDal.Hour_of_begin = detailsOfTrack.HourOfBegin;
+            return detailsOfTrackDal;
+        }
+        public static DetailsOfPassenger ConvertPassengerToCommon(Passengers passengers)
+        {
+            return new DetailsOfPassenger(passengers.Passenger_s_code,passengers.Group_s_code,passengers.Passenger_s_name,passengers.Passenger_s_address);
+        }
+        public static Passengers ConvertPassengerToDal(this common.DetailsOfPassenger detailsOfPassenger)
+        {
+            Passengers detailsOfPassengerDal = new Passengers();
+            detailsOfPassengerDal.Passenger_s_code = detailsOfPassenger.PassengerCode;
+            detailsOfPassengerDal.Group_s_code = detailsOfPassenger.GroupCode;
+            detailsOfPassengerDal.Passenger_s_name = detailsOfPassenger.PassengerName;
+            detailsOfPassengerDal.Passenger_s_address = detailsOfPassenger.PassengerAddress;
+            return detailsOfPassengerDal;
+        }
 
     }
 }
