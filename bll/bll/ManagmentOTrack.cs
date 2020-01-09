@@ -13,6 +13,10 @@ namespace bll
         {
             return ManagementOfTrack.management_of_track.GetTracks();
         }
+        public static List<DetailsOfTrack>GetTracks(int travelCode)
+        {
+            return ManagementOfTrack.management_of_track.GetTracks(travelCode);
+        }
         public static void AddTrack(DetailsOfTrack detailsOfTrack)
         {
             ManagementOfTrack.management_of_track.AddTrack(detailsOfTrack);
