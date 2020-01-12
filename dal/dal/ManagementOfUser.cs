@@ -17,14 +17,14 @@ namespace dal
         }
         public void AddUser(DetailsOfUser detailsOfUser)
         {
-            DataBaseEntities db = new DataBaseEntities();
+            DataBaseEntities1 db = new DataBaseEntities1();
             db.Users.Add(detailsOfUser.ConvertUserToDal());
             db.SaveChanges();
         }
         public List<DetailsOfUser> GetUsers()
         {
             List<Users> users;
-            using (var DbContext = new DataBaseEntities())
+            using (var DbContext = new DataBaseEntities1())
             {
                 users = DbContext.Users.Where(u=>u.Permition==dal.Permition.Driver).ToList();
             }
@@ -32,7 +32,7 @@ namespace dal
         }
         public void RemoveUser(int id)
         {
-            using (var db = new DataBaseEntities())
+            using (var db = new DataBaseEntities1())
             {
                 Users users = db.Users.Find(id);
                 if (users != null)
@@ -45,7 +45,7 @@ namespace dal
         public void UpdateUser(DetailsOfUser detailsOfUser)
         {
             Users users = Mapper.ConvertUserToDal(detailsOfUser);
-            using (var db = new DataBaseEntities())
+            using (var db = new DataBaseEntities1())
             {
                 db.Entry<Users>(db.Set<Users>().Find(users.User_s_Id)).CurrentValues.SetValues(users);
                 db.SaveChanges();

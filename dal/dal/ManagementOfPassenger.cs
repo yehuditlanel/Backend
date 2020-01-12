@@ -17,7 +17,7 @@ namespace dal
         public List<DetailsOfPassenger> GetPassengers()
         {
             List<Passengers> passengers;
-            using (var DbContext = new DataBaseEntities())
+            using (var DbContext = new DataBaseEntities1())
             {
                 passengers = DbContext.Passengers.ToList();
             }
@@ -25,7 +25,7 @@ namespace dal
         }
         public void AddPassenger(DetailsOfPassenger detailsOfPassenger)
         {
-            DataBaseEntities db = new DataBaseEntities();
+            DataBaseEntities1 db = new DataBaseEntities1();
             db.Passengers.Add(detailsOfPassenger.ConvertPassengerToDal());
             db.SaveChanges();
         }
@@ -33,7 +33,7 @@ namespace dal
         public void UpdatePassenger(DetailsOfPassenger detailsOfPassenger)
         {
             Passengers passengers = Mapper.ConvertPassengerToDal(detailsOfPassenger);
-            using (var db = new DataBaseEntities())
+            using (var db = new DataBaseEntities1())
             {
                 db.Entry<Passengers>(db.Set<Passengers>().Find(passengers.Passenger_s_code)).CurrentValues.SetValues(passengers);
                 db.SaveChanges();
@@ -41,7 +41,7 @@ namespace dal
         }
         public void RemovePassenger(string id)
         {
-            using (var db = new DataBaseEntities())
+            using (var db = new DataBaseEntities1())
             {
                 Passengers p = db.Passengers.Find(id);
                 if (p != null)

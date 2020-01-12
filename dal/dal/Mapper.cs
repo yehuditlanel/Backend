@@ -10,7 +10,7 @@ namespace dal
     {
         public static Details_of_vehicles ConvertVehiclesIoDal(this common.DetialsOfVehicles detialsOfVehicles)
         {
-            DataBaseEntities db = new DataBaseEntities();
+            DataBaseEntities1 db = new DataBaseEntities1();
             Details_of_vehicles details_Of_Vehicles_dal = new Details_of_vehicles();
             details_Of_Vehicles_dal.License_plate = detialsOfVehicles.License_plate;
             int type = db.Type_of_vehicles.Where(v => v.Type.Equals(detialsOfVehicles.Type)).Select(c => c.Id).FirstOrDefault();
@@ -22,7 +22,7 @@ namespace dal
 
         public static DetialsOfVehicles ConvertVehicleToCommon(Details_of_vehicles detialsOfVehicles)
         {
-            DataBaseEntities db = new DataBaseEntities();
+            DataBaseEntities1 db = new DataBaseEntities1();
             string type = db.Type_of_vehicles.Where(v => v.Id == detialsOfVehicles.Type).Select(c => c.Type).FirstOrDefault();
             return new DetialsOfVehicles(detialsOfVehicles.License_plate, detialsOfVehicles.several_places, detialsOfVehicles.Quantity_of_fuel_per_km, type);
         }
@@ -72,7 +72,6 @@ namespace dal
             Customers detailsOfCustomerDal = new Customers();
             detailsOfCustomerDal.Conected_name = detailsOfCustomer.Conected_name;
             detailsOfCustomerDal.Conected_phone = detailsOfCustomer.Conected_phone;
-            detailsOfCustomerDal.Group_s_code = detailsOfCustomer.Group_s_code;
             detailsOfCustomerDal.Group_s_name = detailsOfCustomer.Group_s_name;
             return detailsOfCustomerDal;
         }
@@ -109,13 +108,12 @@ namespace dal
         }
         public static DetailsOfPassenger ConvertPassengerToCommon(Passengers passengers)
         {
-            return new DetailsOfPassenger(passengers.Passenger_s_code,passengers.Group_s_code,passengers.Passenger_s_name,passengers.Passenger_s_address);
+            return new DetailsOfPassenger(passengers.Passenger_s_code,passengers.Passenger_s_name,passengers.Passenger_s_address);
         }
         public static Passengers ConvertPassengerToDal(this common.DetailsOfPassenger detailsOfPassenger)
         {
             Passengers detailsOfPassengerDal = new Passengers();
             detailsOfPassengerDal.Passenger_s_code = detailsOfPassenger.PassengerCode;
-            detailsOfPassengerDal.Group_s_code = detailsOfPassenger.GroupCode;
             detailsOfPassengerDal.Passenger_s_name = detailsOfPassenger.PassengerName;
             detailsOfPassengerDal.Passenger_s_address = detailsOfPassenger.PassengerAddress;
             return detailsOfPassengerDal;

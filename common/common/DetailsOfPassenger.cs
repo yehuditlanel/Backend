@@ -8,10 +8,9 @@ namespace common
 {
     public class DetailsOfPassenger
     {
-        public DetailsOfPassenger(int passengerCode,string groupCode,string passengerName,string passengerAddress)
+        public DetailsOfPassenger(int passengerCode,string passengerName,string passengerAddress)
         {
             this.passengerCode = passengerCode;
-            this.groupCode = groupCode;
             this.passengerName = passengerName;
             this.passengerAddress = passengerAddress;
         }
@@ -21,13 +20,6 @@ namespace common
         {
             get { return passengerCode; }
             set { passengerCode = value; }
-        }
-        private string groupCode;
-
-        public string GroupCode
-        {
-            get { return groupCode; }
-            set { groupCode = value; }
         }
         private string passengerName;
 

@@ -17,7 +17,6 @@ namespace dal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Travels()
         {
-            this.Passengers_to_track = new HashSet<Passengers_to_track>();
             this.Track_to_travel = new HashSet<Track_to_travel>();
             this.Passengers = new HashSet<Passengers>();
         }
@@ -30,8 +29,6 @@ namespace dal
         public System.DateTime Date_of_begin { get; set; }
         public System.DateTime Date_of_end { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Passengers_to_track> Passengers_to_track { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Track_to_travel> Track_to_travel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

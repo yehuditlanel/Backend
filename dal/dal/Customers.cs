@@ -20,7 +20,7 @@ namespace dal
             this.Passengers = new HashSet<Passengers>();
         }
     
-        public string Group_s_code { get; set; }
+        public int Group_s_code { get; set; }
         public string Conected_name { get; set; }
         public string Conected_phone { get; set; }
         public string Group_s_name { get; set; }

@@ -15,14 +15,14 @@ namespace dal
         }
         public void AddCustomer(DetailsOfCustomer detailsOfCustomer)
         {
-            DataBaseEntities db = new DataBaseEntities();
+            DataBaseEntities1 db = new DataBaseEntities1();
             db.Customers.Add(detailsOfCustomer.ConvertCustomerToDal());
             db.SaveChanges();
         }
         public List<DetailsOfCustomer> GetCustomers()
         {
             List<Customers> customers;
-            using (var DbContext = new DataBaseEntities())
+            using (var DbContext = new DataBaseEntities1())
             {
                 customers = DbContext.Customers.ToList();
             }
@@ -30,7 +30,7 @@ namespace dal
         }
         public void RemoveCustomer(string id)
         {
-            using (var db = new DataBaseEntities())
+            using (var db = new DataBaseEntities1())
             {
                 // db.Entry(db.Customers.Find(id)).State = System.Data.Entity.EntityState.Deleted;
                 Customers c = db.Customers.Find(id);
@@ -46,7 +46,7 @@ namespace dal
         public void UpdateCustomer(DetailsOfCustomer detailsOfCustomer)
         {
             Customers customers = Mapper.ConvertCustomerToDal(detailsOfCustomer);
-            using(var db=new DataBaseEntities())
+            using(var db=new DataBaseEntities1())
             {
                 db.Entry<Customers>(db.Set<Customers>().Find(customers.Group_s_code)).CurrentValues.SetValues(customers);
                 db.SaveChanges();

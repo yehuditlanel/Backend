@@ -14,6 +14,12 @@ namespace dal
     
     public partial class Track_to_travel
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Track_to_travel()
+        {
+            this.Passengers_to_track = new HashSet<Passengers_to_track>();
+        }
+    
         public int Track_s_code { get; set; }
         public int Travel_s_code { get; set; }
         public int Driver_s_Id { get; set; }
@@ -22,6 +28,8 @@ namespace dal
         public System.TimeSpan Hour_of_begin { get; set; }
     
         public virtual Details_of_vehicles Details_of_vehicles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Passengers_to_track> Passengers_to_track { get; set; }
         public virtual Users Users { get; set; }
         public virtual Travels Travels { get; set; }
     }

@@ -8,9 +8,9 @@ namespace common
 {
     public class DetailsOfCustomer
     {
-        private string group_s_code;
+        private int group_s_code;
 
-        public string Group_s_code
+        public int Group_s_code
         {
             get { return group_s_code; }
             set { group_s_code = value; }
@@ -38,7 +38,7 @@ namespace common
         get { return group_s_name; }
         set { group_s_name = value; }
     }
-    public DetailsOfCustomer(string conected_name, string conected_phone,string group_s_code, string group_s_name)
+    public DetailsOfCustomer(string conected_name, string conected_phone,int group_s_code, string group_s_name)
         
     {
             this.conected_name = conected_name;

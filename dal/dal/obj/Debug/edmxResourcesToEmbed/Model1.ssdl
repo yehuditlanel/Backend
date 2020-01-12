@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="Group's_code" />
     </Key>
-    <Property Name="Group's_code" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="Group's_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Conected_name" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Conected_phone" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="Group's_name" Type="nvarchar" MaxLength="30" />
@@ -33,7 +33,7 @@
       <PropertyRef Name="Passenger's_code" />
     </Key>
     <Property Name="Passenger's_code" Type="int" Nullable="false" />
-    <Property Name="Group's_code" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="Group's_code" Type="int" Nullable="false" />
     <Property Name="Passenger's_name" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Passenger's_address" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
@@ -43,7 +43,7 @@
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Passenger's_code" Type="int" Nullable="false" />
-    <Property Name="Travel's_code" Type="int" Nullable="false" />
+    <Property Name="Track's_code" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Passengers_to_travels">
     <Key>
@@ -130,14 +130,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Passengers_to_track_ToTable_1">
-    <End Role="Travels" Type="Self.Travels" Multiplicity="1" />
+    <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="1" />
     <End Role="Passengers_to_track" Type="Self.Passengers_to_track" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Travels">
-        <PropertyRef Name="Travel's_code" />
+      <Principal Role="Track_to_travel">
+        <PropertyRef Name="Track's_code" />
       </Principal>
       <Dependent Role="Passengers_to_track">
-        <PropertyRef Name="Travel's_code" />
+        <PropertyRef Name="Track's_code" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -237,7 +237,7 @@
       <End Role="Passengers_to_track" EntitySet="Passengers_to_track" />
     </AssociationSet>
     <AssociationSet Name="FK_Passengers_to_track_ToTable_1" Association="Self.FK_Passengers_to_track_ToTable_1">
-      <End Role="Travels" EntitySet="Travels" />
+      <End Role="Track_to_travel" EntitySet="Track_to_travel" />
       <End Role="Passengers_to_track" EntitySet="Passengers_to_track" />
     </AssociationSet>
     <AssociationSet Name="FK_Passengers_to_travels_ToTable" Association="Self.FK_Passengers_to_travels_ToTable">

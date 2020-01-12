@@ -17,7 +17,7 @@ namespace dal
         public List<DetailsOfTrack> GetTracks()
         {
             List<Track_to_travel> tracks;
-            using (var DbContext = new DataBaseEntities())
+            using (var DbContext = new DataBaseEntities1())
             {
                 tracks = DbContext.Track_to_travel.ToList();
             }
@@ -26,7 +26,7 @@ namespace dal
         public List<DetailsOfTrack>GetTracks(int travelCode)
         {
             List<Track_to_travel> tracks;
-            using (var DbContext=new DataBaseEntities())
+            using (var DbContext=new DataBaseEntities1())
             {
                 tracks = DbContext.Track_to_travel.Where(t => t.Travel_s_code == travelCode).ToList();
             }
@@ -34,7 +34,7 @@ namespace dal
         }
         public void AddTrack(DetailsOfTrack detailsOfTrack)
         {
-            DataBaseEntities db = new DataBaseEntities();
+            DataBaseEntities1 db = new DataBaseEntities1();
             db.Track_to_travel.Add(detailsOfTrack.ConvertTrackToDal());
             db.SaveChanges();
         }
@@ -42,7 +42,7 @@ namespace dal
         public void UpdateTrack(DetailsOfTrack detailsOfTrack)
         {
             Track_to_travel tracks = Mapper.ConvertTrackToDal(detailsOfTrack);
-            using (var db = new DataBaseEntities())
+            using (var db = new DataBaseEntities1())
             {
                 db.Entry<Track_to_travel>(db.Set<Track_to_travel>().Find(tracks.Track_s_code)).CurrentValues.SetValues(tracks);
                 db.SaveChanges();
@@ -50,7 +50,7 @@ namespace dal
         }
         public void RemoveTrack(string id)
         {
-            using (var db = new DataBaseEntities())
+            using (var db = new DataBaseEntities1())
             {
                 Track_to_travel t = db.Track_to_travel.Find(id);
                 if (t != null)

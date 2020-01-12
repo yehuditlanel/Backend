@@ -22,7 +22,7 @@ namespace dal
         }
     
         public int Passenger_s_code { get; set; }
-        public string Group_s_code { get; set; }
+        public int Group_s_code { get; set; }
         public string Passenger_s_name { get; set; }
         public string Passenger_s_address { get; set; }
     

@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Group's_code" />
           </Key>
-          <Property Name="Group's_code" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Group's_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Conected_name" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Conected_phone" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Group's_name" Type="nvarchar" MaxLength="30" />
@@ -38,7 +38,7 @@
             <PropertyRef Name="Passenger's_code" />
           </Key>
           <Property Name="Passenger's_code" Type="int" Nullable="false" />
-          <Property Name="Group's_code" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Group's_code" Type="int" Nullable="false" />
           <Property Name="Passenger's_name" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Passenger's_address" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
@@ -48,7 +48,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Passenger's_code" Type="int" Nullable="false" />
-          <Property Name="Travel's_code" Type="int" Nullable="false" />
+          <Property Name="Track's_code" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Passengers_to_travels">
           <Key>
@@ -135,14 +135,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Passengers_to_track_ToTable_1">
-          <End Role="Travels" Type="Self.Travels" Multiplicity="1" />
+          <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="1" />
           <End Role="Passengers_to_track" Type="Self.Passengers_to_track" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Travels">
-              <PropertyRef Name="Travel's_code" />
+            <Principal Role="Track_to_travel">
+              <PropertyRef Name="Track's_code" />
             </Principal>
             <Dependent Role="Passengers_to_track">
-              <PropertyRef Name="Travel's_code" />
+              <PropertyRef Name="Track's_code" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -242,7 +242,7 @@
             <End Role="Passengers_to_track" EntitySet="Passengers_to_track" />
           </AssociationSet>
           <AssociationSet Name="FK_Passengers_to_track_ToTable_1" Association="Self.FK_Passengers_to_track_ToTable_1">
-            <End Role="Travels" EntitySet="Travels" />
+            <End Role="Track_to_travel" EntitySet="Track_to_travel" />
             <End Role="Passengers_to_track" EntitySet="Passengers_to_track" />
           </AssociationSet>
           <AssociationSet Name="FK_Passengers_to_travels_ToTable" Association="Self.FK_Passengers_to_travels_ToTable">
@@ -279,7 +279,7 @@
           <Key>
             <PropertyRef Name="Group_s_code" />
           </Key>
-          <Property Name="Group_s_code" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Group_s_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Conected_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Conected_phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Group_s_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
@@ -312,7 +312,7 @@
             <PropertyRef Name="Passenger_s_code" />
           </Key>
           <Property Name="Passenger_s_code" Type="Int32" Nullable="false" />
-          <Property Name="Group_s_code" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Group_s_code" Type="Int32" Nullable="false" />
           <Property Name="Passenger_s_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Passenger_s_address" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Customers" Relationship="Self.FK_Passengers_ToTable" FromRole="Passengers" ToRole="Customers" />
@@ -325,9 +325,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Passenger_s_code" Type="Int32" Nullable="false" />
-          <Property Name="Travel_s_code" Type="Int32" Nullable="false" />
+          <Property Name="Track_s_code" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Passengers" Relationship="Self.FK_Passengers_to_track_ToTable" FromRole="Passengers_to_track" ToRole="Passengers" />
-          <NavigationProperty Name="Travels" Relationship="Self.FK_Passengers_to_track_ToTable_1" FromRole="Passengers_to_track" ToRole="Travels" />
+          <NavigationProperty Name="Track_to_travel" Relationship="Self.FK_Passengers_to_track_ToTable_1" FromRole="Passengers_to_track" ToRole="Track_to_travel" />
         </EntityType>
         <EntityType Name="Track_to_travel">
           <Key>
@@ -340,6 +340,7 @@
           <Property Name="Date_of_travel" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Hour_of_begin" Type="Time" Nullable="false" Precision="7" />
           <NavigationProperty Name="Details_of_vehicles" Relationship="Self.FK_Track_to_travel_ToTable_1" FromRole="Track_to_travel" ToRole="Details_of_vehicles" />
+          <NavigationProperty Name="Passengers_to_track" Relationship="Self.FK_Passengers_to_track_ToTable_1" FromRole="Track_to_travel" ToRole="Passengers_to_track" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Track_to_travel_ToTable" FromRole="Track_to_travel" ToRole="Users" />
           <NavigationProperty Name="Travels" Relationship="Self.FK_Track_to_travel_ToTable_2" FromRole="Track_to_travel" ToRole="Travels" />
         </EntityType>
@@ -354,7 +355,6 @@
           <Property Name="Frequency" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date_of_begin" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Date_of_end" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Passengers_to_track" Relationship="Self.FK_Passengers_to_track_ToTable_1" FromRole="Travels" ToRole="Passengers_to_track" />
           <NavigationProperty Name="Track_to_travel" Relationship="Self.FK_Track_to_travel_ToTable_2" FromRole="Travels" ToRole="Track_to_travel" />
           <NavigationProperty Name="Passengers" Relationship="Self.Passengers_to_travels" FromRole="Travels" ToRole="Passengers" />
         </EntityType>
@@ -439,14 +439,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Passengers_to_track_ToTable_1">
-          <End Role="Travels" Type="Self.Travels" Multiplicity="1" />
+          <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="1" />
           <End Role="Passengers_to_track" Type="Self.Passengers_to_track" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Travels">
-              <PropertyRef Name="Travel_s_code" />
+            <Principal Role="Track_to_travel">
+              <PropertyRef Name="Track_s_code" />
             </Principal>
             <Dependent Role="Passengers_to_track">
-              <PropertyRef Name="Travel_s_code" />
+              <PropertyRef Name="Track_s_code" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -478,7 +478,7 @@
           <End Role="Passengers" Type="Self.Passengers" Multiplicity="*" />
           <End Role="Travels" Type="Self.Travels" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DataBaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DataBaseEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customers" />
           <EntitySet Name="Details_of_vehicles" EntityType="Self.Details_of_vehicles" />
           <EntitySet Name="Hour_of_work_to_driver" EntityType="Self.Hour_of_work_to_driver" />
@@ -509,7 +509,7 @@
             <End Role="Passengers_to_track" EntitySet="Passengers_to_track" />
           </AssociationSet>
           <AssociationSet Name="FK_Passengers_to_track_ToTable_1" Association="Self.FK_Passengers_to_track_ToTable_1">
-            <End Role="Travels" EntitySet="Travels" />
+            <End Role="Track_to_travel" EntitySet="Track_to_travel" />
             <End Role="Passengers_to_track" EntitySet="Passengers_to_track" />
           </AssociationSet>
           <AssociationSet Name="FK_Track_to_travel_ToTable" Association="Self.FK_Track_to_travel_ToTable">
@@ -535,7 +535,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DataBaseModelStoreContainer" CdmEntityContainer="DataBaseEntities">
+        <EntityContainerMapping StorageEntityContainer="DataBaseModelStoreContainer" CdmEntityContainer="DataBaseEntities1">
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="DataBaseModel.Customers">
               <MappingFragment StoreEntitySet="Customers">
@@ -582,7 +582,7 @@
               <MappingFragment StoreEntitySet="Passengers_to_track">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Passenger_s_code" ColumnName="Passenger's_code" />
-                <ScalarProperty Name="Travel_s_code" ColumnName="Travel's_code" />
+                <ScalarProperty Name="Track_s_code" ColumnName="Track's_code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

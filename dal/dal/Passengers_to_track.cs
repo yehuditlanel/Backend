@@ -16,9 +16,9 @@ namespace dal
     {
         public int Id { get; set; }
         public int Passenger_s_code { get; set; }
-        public int Travel_s_code { get; set; }
+        public int Track_s_code { get; set; }
     
         public virtual Passengers Passengers { get; set; }
-        public virtual Travels Travels { get; set; }
+        public virtual Track_to_travel Track_to_travel { get; set; }
     }
 }
