@@ -28,7 +28,7 @@ namespace dal
             }
             return customers.Select(c => Mapper.ConvertCustomerToCommon(c)).ToList();
         }
-        public void RemoveCustomer(string id)
+        public void RemoveCustomer(int id)
         {
             using (var db = new DataBaseEntities1())
             {

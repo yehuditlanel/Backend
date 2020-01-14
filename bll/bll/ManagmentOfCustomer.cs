@@ -17,7 +17,7 @@ namespace bll
         {
             ManagementOfCustomer.management_of_customer.AddCustomer(details_of_customer);
         }
-        public static void RemoveCustomer(string id)
+        public static void RemoveCustomer(int id)
         {
             ManagementOfCustomer.management_of_customer.RemoveCustomer(id);
         }

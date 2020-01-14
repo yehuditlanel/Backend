@@ -70,6 +70,7 @@ namespace dal
         public static Customers ConvertCustomerToDal(this common.DetailsOfCustomer detailsOfCustomer)
         {
             Customers detailsOfCustomerDal = new Customers();
+            detailsOfCustomerDal.Group_s_code = detailsOfCustomer.Group_s_code;
             detailsOfCustomerDal.Conected_name = detailsOfCustomer.Conected_name;
             detailsOfCustomerDal.Conected_phone = detailsOfCustomer.Conected_phone;
             detailsOfCustomerDal.Group_s_name = detailsOfCustomer.Group_s_name;
@@ -108,7 +109,7 @@ namespace dal
         }
         public static DetailsOfPassenger ConvertPassengerToCommon(Passengers passengers)
         {
-            return new DetailsOfPassenger(passengers.Passenger_s_code,passengers.Passenger_s_name,passengers.Passenger_s_address);
+            return new DetailsOfPassenger(passengers.Passenger_s_code,passengers.Group_s_code, passengers.Passenger_s_name,passengers.Passenger_s_address);
         }
         public static Passengers ConvertPassengerToDal(this common.DetailsOfPassenger detailsOfPassenger)
         {
