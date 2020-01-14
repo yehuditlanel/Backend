@@ -108,12 +108,13 @@ namespace dal
         }
         public static DetailsOfPassenger ConvertPassengerToCommon(Passengers passengers)
         {
-            return new DetailsOfPassenger(passengers.Passenger_s_code,passengers.Passenger_s_name,passengers.Passenger_s_address);
+            return new DetailsOfPassenger(passengers.Passenger_s_code,passengers.Group_s_code,passengers.Passenger_s_name,passengers.Passenger_s_address);
         }
         public static Passengers ConvertPassengerToDal(this common.DetailsOfPassenger detailsOfPassenger)
         {
             Passengers detailsOfPassengerDal = new Passengers();
             detailsOfPassengerDal.Passenger_s_code = detailsOfPassenger.PassengerCode;
+            detailsOfPassengerDal.Group_s_code = detailsOfPassenger.GroupCode;
             detailsOfPassengerDal.Passenger_s_name = detailsOfPassenger.PassengerName;
             detailsOfPassengerDal.Passenger_s_address = detailsOfPassenger.PassengerAddress;
             return detailsOfPassengerDal;

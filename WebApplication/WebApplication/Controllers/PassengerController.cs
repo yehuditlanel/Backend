@@ -17,9 +17,9 @@ namespace WebApplication.Controllers
         }
 
         // GET: api/Passenger/5
-        public string Get(int id)
+        public List<common.DetailsOfPassenger> Get(int trackCode)
         {
-            return "value";
+            return ManagmentOfPassenger.GetPassengers(trackCode);
         }
 
         // POST: api/Passenger
