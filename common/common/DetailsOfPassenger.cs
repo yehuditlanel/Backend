@@ -43,6 +43,5 @@ namespace common
             get { return passengerAddress; }
             set { passengerAddress = value; }
         }
-        
     }
 }

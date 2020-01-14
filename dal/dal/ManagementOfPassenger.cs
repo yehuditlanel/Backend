@@ -23,6 +23,18 @@ namespace dal
             }
             return passengers.Select(p => Mapper.ConvertPassengerToCommon(p)).ToList();
         }
+        public List<DetailsOfPassenger> GetPassengers(int trackCode)
+        {
+            List<int> passengersCode = new List<int>();
+
+            List<Passengers> passengers;
+            using (var DbContext = new DataBaseEntities1())
+            {
+                passengersCode = DbContext.Passengers_to_track.Where(p => p.Track_s_code == trackCode).Select(p=>p.Passenger_s_code).ToList();
+                passengers = DbContext.Passengers.Where(p=>passengersCode.Contains(p.Passenger_s_code)).ToList();
+            }
+            return passengers.Select(p => Mapper.ConvertPassengerToCommon(p)).ToList();
+        }
         public void AddPassenger(DetailsOfPassenger detailsOfPassenger)
         {
             DataBaseEntities1 db = new DataBaseEntities1();

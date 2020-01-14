@@ -13,6 +13,10 @@ namespace bll
         {
             return ManagementOfPassenger.management_of_passenger.GetPassengers();
         }
+        public static List<DetailsOfPassenger> GetPassengers(int trackCode)
+        {
+            return ManagementOfPassenger.management_of_passenger.GetPassengers(trackCode);
+        }
         public static void AddPassenger(DetailsOfPassenger detailsOfPassenger)
         {
             ManagementOfPassenger.management_of_passenger.AddPassenger(detailsOfPassenger);
