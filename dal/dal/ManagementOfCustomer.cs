@@ -32,14 +32,17 @@ namespace dal
         {
             using (var db = new DataBaseEntities1())
             {
-                // db.Entry(db.Customers.Find(id)).State = System.Data.Entity.EntityState.Deleted;
                 Customers c = db.Customers.Find(id);
                 if (c != null)
                 {
+                    var child = c.Passengers.ToList();
+                    foreach (var item in child)
+                    {
+                        db.Passengers.Remove(item);
+                    }
                     db.Customers.Remove(c);
                     db.SaveChanges();
                 }
-                //db.SaveChanges();
             }
         }
 

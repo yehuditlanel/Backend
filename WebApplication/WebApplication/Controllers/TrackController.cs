@@ -19,7 +19,7 @@ namespace WebApplication.Controllers
         // GET: api/Track/5
         public List<common.DetailsOfTrack> Get(int travelCode)
         {
-            return ManagmentOTrack.GetTracks(travelCode);
+           return ManagmentOTrack.GetTracks(travelCode);
         }
 
         // POST: api/Track

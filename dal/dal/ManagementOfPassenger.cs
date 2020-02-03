@@ -30,6 +30,7 @@ namespace dal
             List<Passengers> passengers;
             using (var DbContext = new DataBaseEntities1())
             {
+                //DbContext.Track_to_travel.FirstOrDefault().Passengers_to_track.ToList();
                 passengersCode = DbContext.Passengers_to_track.Where(p => p.Track_s_code == trackCode).Select(p=>p.Passenger_s_code).ToList();
                 passengers = DbContext.Passengers.Where(p=>passengersCode.Contains(p.Passenger_s_code)).ToList();
             }
