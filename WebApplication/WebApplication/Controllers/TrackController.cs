@@ -8,6 +8,7 @@ using bll;
 using common;
 namespace WebApplication.Controllers
 {
+    [RoutePrefix("api/Track")]
     public class TrackController : ApiController
     {
         // GET: api/Track
@@ -21,7 +22,12 @@ namespace WebApplication.Controllers
         {
            return ManagmentOTrack.GetTracks(travelCode);
         }
-
+        [Route("GetTrackByDriverId")]
+        [HttpGet]
+        public List<DetailsOfTrack> GetTrackByDriverId(int userId)
+        {
+            return ManagmentOTrack.GetTrackByDriverId(userId);
+        }
         // POST: api/Track
         public void Post([FromBody]DetailsOfTrack detailsOfTrack)
         {

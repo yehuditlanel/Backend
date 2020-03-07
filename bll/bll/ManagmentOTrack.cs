@@ -17,6 +17,10 @@ namespace bll
         {
             return ManagementOfTrack.management_of_track.GetTracks(travelCode);
         }
+        public static List<DetailsOfTrack> GetTrackByDriverId(int userId)
+        {
+            return ManagementOfTrack.management_of_track.GetTrackByDriverId(userId);
+        }
         public static void AddTrack(DetailsOfTrack detailsOfTrack)
         {
             ManagementOfTrack.management_of_track.AddTrack(detailsOfTrack);

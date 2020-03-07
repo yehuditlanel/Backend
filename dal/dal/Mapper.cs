@@ -35,15 +35,15 @@ namespace dal
             detailsOfUserDal.Address_of_user = detailsOfUser.AddressOfUser;
             detailsOfUserDal.Phone_of_user = detailsOfUser.PhoneOfUser;
             //do this short
-            if (detailsOfUser.Permition.ToString()=="Admin")
+            if (detailsOfUser.Role.ToString()=="Admin")
             {
                 detailsOfUserDal.Permition = dal.Permition.Admin;
             }
-            else if (detailsOfUser.Permition.ToString()=="Secretary")
+            else if (detailsOfUser.Role.ToString()=="Secretary")
             {
                 detailsOfUserDal.Permition = dal.Permition.Secretary;
             }
-            else if (detailsOfUser.Permition.ToString()=="Driver")
+            else if (detailsOfUser.Role.ToString()=="Driver")
             {
                 detailsOfUserDal.Permition = dal.Permition.Driver;
             }
@@ -52,12 +52,12 @@ namespace dal
 
         public static DetailsOfUser ConvertUserToCommon(Users detailOfUserDal)
         {
-            common.Permition p;
+            common.Role p;
             if (detailOfUserDal.Permition == dal.Permition.Admin)
-                p = common.Permition.Admin;
+                p = common.Role.Admin;
             else if (detailOfUserDal.Permition == dal.Permition.Driver)
-                p = common.Permition.Driver;
-            else p = common.Permition.Secretary;
+                p = common.Role.Driver;
+            else p = common.Role.Secretary;
             //fix to mapper the permition
             return new common.DetailsOfUser(detailOfUserDal.User_s_Id, detailOfUserDal.Name_of_user, detailOfUserDal.Address_of_user, detailOfUserDal.Phone_of_user, p);
             

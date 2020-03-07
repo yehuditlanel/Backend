@@ -30,6 +30,16 @@ namespace dal
             }
             return users.Select(u => Mapper.ConvertUserToCommon(u)).ToList();
         }
+        public DetailsOfUser GetUsers(int id,string nameOfUser)
+        {
+            Users user;
+            using(var DbContext=new DataBaseEntities1())
+            {
+                user = DbContext.Users.Where(u => u.User_s_Id == id&&u.Name_of_user==nameOfUser).FirstOrDefault();
+            }
+            if (user == null) return null;
+            return Mapper.ConvertUserToCommon(user);
+        }
         public void RemoveUser(int id)
         {
             using (var db = new DataBaseEntities1())

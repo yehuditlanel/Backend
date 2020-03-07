@@ -12,16 +12,14 @@ namespace bll
         public static List<DetailsOfUser> GetUsers()
         {
             return ManagementOfUser.management_of_user.GetUsers();
-            //dal.Users users = new dal.Users();
-            //List<DetailsOfUser> listDetailsOfUser =
-            //    dal.ManagementOfUser.management_of_user.listOfUser();
-            //return listDetailsOfUser;
+        }
+        public static DetailsOfUser GetUsers(int id,string nameOfUser)
+        {
+            return ManagementOfUser.management_of_user.GetUsers(id,nameOfUser);
         }
         public static void addUser(DetailsOfUser detailsOfUser)
         {
             ManagementOfUser.management_of_user.AddUser(detailsOfUser);
-            //dal.ManagementOfCustomer management_of_customer = new dal.ManagementOfCustomer();
-            //management_of_customer.AddCustomer(details_of_customer);
         }
         public static void RemoveUser(int id)
         {

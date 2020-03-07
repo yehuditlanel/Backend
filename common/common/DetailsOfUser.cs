@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace common
 {
-    public enum Permition { Admin,Secretary,Driver };
+    public enum Role { Admin,Secretary,Driver };
     public class DetailsOfUser
     {
         private int userId;
@@ -37,21 +37,21 @@ namespace common
             get { return phoneOfUser; }
             set { phoneOfUser = value; }
         }
-        private Permition permition;
+        private Role role;
 
-        public Permition Permition
+        public Role Role
         {
-            get { return permition; }
-            set { permition = value; }
+            get { return role; }
+            set { role = value; }
         }
 
-        public DetailsOfUser(int userId, string nameOfUser, string addressOfUser, string phoneOfUser, Permition permition)
+        public DetailsOfUser(int userId, string nameOfUser, string addressOfUser, string phoneOfUser, Role role)
         {
             this.userId = userId;
             this.nameOfUser = nameOfUser;
             this.addressOfUser = addressOfUser;
             this.phoneOfUser = phoneOfUser;
-            this.permition = permition;
+            this.role = role;
         }
     }
 }

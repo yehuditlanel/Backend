@@ -58,3 +58,9 @@ C:\Users\Rachel\Desktop\git\טו טבת\Car2TrackBackend\common\common\obj\Debug
 C:\Users\Rachel\Desktop\git\טו טבת\Car2TrackBackend\common\common\obj\Debug\common.csproj.CoreCompileInputs.cache
 C:\Users\Rachel\Desktop\git\טו טבת\Car2TrackBackend\common\common\obj\Debug\common.dll
 C:\Users\Rachel\Desktop\git\טו טבת\Car2TrackBackend\common\common\obj\Debug\common.pdb
+G:\Car2TrackBackend\common\common\bin\Debug\common.dll
+G:\Car2TrackBackend\common\common\bin\Debug\common.pdb
+G:\Car2TrackBackend\common\common\obj\Debug\common.csprojAssemblyReference.cache
+G:\Car2TrackBackend\common\common\obj\Debug\common.csproj.CoreCompileInputs.cache
+G:\Car2TrackBackend\common\common\obj\Debug\common.dll
+G:\Car2TrackBackend\common\common\obj\Debug\common.pdb

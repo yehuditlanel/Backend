@@ -138,3 +138,17 @@ C:\Users\Rachel\Desktop\git\טו טבת\Car2TrackBackend\bll\bll\obj\Debug\bll.c
 C:\Users\Rachel\Desktop\git\טו טבת\Car2TrackBackend\bll\bll\obj\Debug\bll.csproj.CopyComplete
 C:\Users\Rachel\Desktop\git\טו טבת\Car2TrackBackend\bll\bll\obj\Debug\bll.dll
 C:\Users\Rachel\Desktop\git\טו טבת\Car2TrackBackend\bll\bll\obj\Debug\bll.pdb
+G:\Car2TrackBackend\bll\bll\bin\Debug\bll.dll
+G:\Car2TrackBackend\bll\bll\bin\Debug\bll.pdb
+G:\Car2TrackBackend\bll\bll\bin\Debug\common.dll
+G:\Car2TrackBackend\bll\bll\bin\Debug\dal.dll
+G:\Car2TrackBackend\bll\bll\bin\Debug\EntityFramework.dll
+G:\Car2TrackBackend\bll\bll\bin\Debug\common.pdb
+G:\Car2TrackBackend\bll\bll\bin\Debug\dal.pdb
+G:\Car2TrackBackend\bll\bll\bin\Debug\dal.dll.config
+G:\Car2TrackBackend\bll\bll\bin\Debug\EntityFramework.xml
+G:\Car2TrackBackend\bll\bll\obj\Debug\bll.csprojAssemblyReference.cache
+G:\Car2TrackBackend\bll\bll\obj\Debug\bll.csproj.CoreCompileInputs.cache
+G:\Car2TrackBackend\bll\bll\obj\Debug\bll.csproj.CopyComplete
+G:\Car2TrackBackend\bll\bll\obj\Debug\bll.dll
+G:\Car2TrackBackend\bll\bll\obj\Debug\bll.pdb
