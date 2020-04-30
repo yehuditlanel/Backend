@@ -13,6 +13,11 @@ namespace bll
         {
             return ManagementOfTravel.management_of_travel.GetTravels();
         }
+        public static List<DetailsOfTravel> GetTravels(int groupCode)
+        {
+            return ManagementOfTravel.management_of_travel.GetTravels(groupCode);
+        }
+       
         public static void AddTravel(DetailsOfTravel detailsOfTravel)
         {
             ManagementOfTravel.management_of_travel.AddTravel(detailsOfTravel);

@@ -28,7 +28,9 @@ namespace dal
         public string Frequency { get; set; }
         public System.DateTime Date_of_begin { get; set; }
         public System.DateTime Date_of_end { get; set; }
+        public int Group_s_code { get; set; }
     
+        public virtual Customers Customers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Track_to_travel> Track_to_travel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

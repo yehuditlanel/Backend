@@ -17,9 +17,9 @@ namespace WebApplication.Controllers
         }
 
         // GET: api/Travel/5
-        public string Get(int id)
+        public List<common.DetailsOfTravel> Get(int groupCode)
         {
-            return "value";
+            return ManagmentOfTravel.GetTravels(groupCode);
         }
 
         // POST: api/Travel

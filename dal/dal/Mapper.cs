@@ -10,7 +10,7 @@ namespace dal
     {
         public static Details_of_vehicles ConvertVehiclesIoDal(this common.DetialsOfVehicles detialsOfVehicles)
         {
-            DataBaseEntities1 db = new DataBaseEntities1();
+            DataBaseEntities db = new DataBaseEntities();
             Details_of_vehicles details_Of_Vehicles_dal = new Details_of_vehicles();
             details_Of_Vehicles_dal.License_plate = detialsOfVehicles.License_plate;
             int type = db.Type_of_vehicles.Where(v => v.Type.Equals(detialsOfVehicles.Type)).Select(c => c.Id).FirstOrDefault();
@@ -22,7 +22,7 @@ namespace dal
 
         public static DetialsOfVehicles ConvertVehicleToCommon(Details_of_vehicles detialsOfVehicles)
         {
-            DataBaseEntities1 db = new DataBaseEntities1();
+            DataBaseEntities db = new DataBaseEntities();
             string type = db.Type_of_vehicles.Where(v => v.Id == detialsOfVehicles.Type).Select(c => c.Type).FirstOrDefault();
             return new DetialsOfVehicles(detialsOfVehicles.License_plate, detialsOfVehicles.several_places, detialsOfVehicles.Quantity_of_fuel_per_km, type);
         }
@@ -78,7 +78,7 @@ namespace dal
         }
         public static DetailsOfTravel ConvertTravelToCommon(Travels travels)
         {
-            return new DetailsOfTravel(travels.Travel_s_code,travels.Collection_or_dispersing,travels.Destination_or_source,travels.Hour,travels.Frequency,travels.Date_of_begin,travels.Date_of_end);
+            return new DetailsOfTravel(travels.Travel_s_code,travels.Collection_or_dispersing,travels.Destination_or_source,travels.Hour,travels.Frequency,travels.Date_of_begin,travels.Date_of_end,travels.Group_s_code);
         }
         public static Travels ConvertTravelToDal(this common.DetailsOfTravel detailsOfTravel)
         {
@@ -90,6 +90,7 @@ namespace dal
             detailsOfTravelDal.Frequency = detailsOfTravel.Frequency;
             detailsOfTravelDal.Date_of_begin = detailsOfTravel.DateOfBegin;
             detailsOfTravelDal.Date_of_end = detailsOfTravel.DateOfEnd;
+            detailsOfTravelDal.Group_s_code = detailsOfTravel.GroupCode;
             return detailsOfTravelDal;
         }
         public static DetailsOfTrack ConvertTrackToCommon(Track_to_travel track)
@@ -109,13 +110,12 @@ namespace dal
         }
         public static DetailsOfPassenger ConvertPassengerToCommon(Passengers passengers)
         {
-            return new DetailsOfPassenger(passengers.Passenger_s_code,passengers.Group_s_code, passengers.Passenger_s_name,passengers.Passenger_s_address);
+            return new DetailsOfPassenger(passengers.Passenger_s_code, passengers.Passenger_s_name,passengers.Passenger_s_address);
         }
         public static Passengers ConvertPassengerToDal(this common.DetailsOfPassenger detailsOfPassenger)
         {
             Passengers detailsOfPassengerDal = new Passengers();
             detailsOfPassengerDal.Passenger_s_code = detailsOfPassenger.PassengerCode;
-            detailsOfPassengerDal.Group_s_code = detailsOfPassenger.GroupCode;
             detailsOfPassengerDal.Passenger_s_name = detailsOfPassenger.PassengerName;
             detailsOfPassengerDal.Passenger_s_address = detailsOfPassenger.PassengerAddress;
             return detailsOfPassengerDal;

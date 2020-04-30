@@ -16,7 +16,7 @@ namespace dal
         public List<DetailsOfTrack> GetTrackByDriverId(int userId)
         {
             List<Track_to_travel> tracks;
-            using (var DbContext = new DataBaseEntities1())
+            using (var DbContext = new DataBaseEntities())
             {
                 tracks = DbContext.Track_to_travel.Where(u => u.Driver_s_Id == userId).ToList();
             }
@@ -25,7 +25,7 @@ namespace dal
         public List<DetailsOfTrack> GetTracks()
         {
             List<Track_to_travel> tracks;
-            using (var DbContext = new DataBaseEntities1())
+            using (var DbContext = new DataBaseEntities())
             {
                 tracks = DbContext.Track_to_travel.ToList();
             }
@@ -34,7 +34,7 @@ namespace dal
         public List<DetailsOfTrack>GetTracks(int travelCode)
         {
             List<Track_to_travel> tracks;
-            using (var DbContext=new DataBaseEntities1())
+            using (var DbContext=new DataBaseEntities())
             {
                 tracks = DbContext.Track_to_travel.Where(t => t.Travel_s_code == travelCode).ToList();
             }
@@ -42,7 +42,7 @@ namespace dal
         }
         public void AddTrack(DetailsOfTrack detailsOfTrack)
         {
-            DataBaseEntities1 db = new DataBaseEntities1();
+            DataBaseEntities db = new DataBaseEntities();
             db.Track_to_travel.Add(detailsOfTrack.ConvertTrackToDal());
             db.SaveChanges();
         }
@@ -50,7 +50,7 @@ namespace dal
         public void UpdateTrack(DetailsOfTrack detailsOfTrack)
         {
             Track_to_travel tracks = Mapper.ConvertTrackToDal(detailsOfTrack);
-            using (var db = new DataBaseEntities1())
+            using (var db = new DataBaseEntities())
             {
                 db.Entry<Track_to_travel>(db.Set<Track_to_travel>().Find(tracks.Track_s_code)).CurrentValues.SetValues(tracks);
                 db.SaveChanges();
@@ -58,7 +58,7 @@ namespace dal
         }
         public void RemoveTrack(string id)
         {
-            using (var db = new DataBaseEntities1())
+            using (var db = new DataBaseEntities())
             {
                 Track_to_travel t = db.Track_to_travel.Find(id);
                 if (t != null)

@@ -8,7 +8,7 @@
     <Property Name="Conected_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Conected_phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Group_s_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Passengers" Relationship="Self.FK_Passengers_ToTable" FromRole="Customers" ToRole="Passengers" />
+    <NavigationProperty Name="Travels" Relationship="Self.FK_Travels_ToTable" FromRole="Customers" ToRole="Travels" />
   </EntityType>
   <EntityType Name="Details_of_vehicles">
     <Key>
@@ -37,10 +37,8 @@
       <PropertyRef Name="Passenger_s_code" />
     </Key>
     <Property Name="Passenger_s_code" Type="Int32" Nullable="false" />
-    <Property Name="Group_s_code" Type="Int32" Nullable="false" />
     <Property Name="Passenger_s_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Passenger_s_address" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Customers" Relationship="Self.FK_Passengers_ToTable" FromRole="Passengers" ToRole="Customers" />
     <NavigationProperty Name="Passengers_to_track" Relationship="Self.FK_Passengers_to_track_ToTable" FromRole="Passengers" ToRole="Passengers_to_track" />
     <NavigationProperty Name="Travels" Relationship="Self.Passengers_to_travels" FromRole="Passengers" ToRole="Travels" />
   </EntityType>
@@ -80,6 +78,8 @@
     <Property Name="Frequency" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Date_of_begin" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Date_of_end" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Group_s_code" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Travels_ToTable" FromRole="Travels" ToRole="Customers" />
     <NavigationProperty Name="Track_to_travel" Relationship="Self.FK_Track_to_travel_ToTable_2" FromRole="Travels" ToRole="Track_to_travel" />
     <NavigationProperty Name="Passengers" Relationship="Self.Passengers_to_travels" FromRole="Travels" ToRole="Passengers" />
   </EntityType>
@@ -103,14 +103,14 @@
     <NavigationProperty Name="Hour_of_work_to_driver" Relationship="Self.FK_Hour_of_work_to_driver_ToTable" FromRole="Users" ToRole="Hour_of_work_to_driver" />
     <NavigationProperty Name="Track_to_travel" Relationship="Self.FK_Track_to_travel_ToTable" FromRole="Users" ToRole="Track_to_travel" />
   </EntityType>
-  <Association Name="FK_Passengers_ToTable">
+  <Association Name="FK_Travels_ToTable">
     <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
-    <End Role="Passengers" Type="Self.Passengers" Multiplicity="*" />
+    <End Role="Travels" Type="Self.Travels" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Customers">
         <PropertyRef Name="Group_s_code" />
       </Principal>
-      <Dependent Role="Passengers">
+      <Dependent Role="Travels">
         <PropertyRef Name="Group_s_code" />
       </Dependent>
     </ReferentialConstraint>
@@ -203,7 +203,7 @@
     <End Role="Passengers" Type="Self.Passengers" Multiplicity="*" />
     <End Role="Travels" Type="Self.Travels" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="DataBaseEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DataBaseEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Customers" EntityType="Self.Customers" />
     <EntitySet Name="Details_of_vehicles" EntityType="Self.Details_of_vehicles" />
     <EntitySet Name="Hour_of_work_to_driver" EntityType="Self.Hour_of_work_to_driver" />
@@ -213,9 +213,9 @@
     <EntitySet Name="Travels" EntityType="Self.Travels" />
     <EntitySet Name="Type_of_vehicles" EntityType="Self.Type_of_vehicles" />
     <EntitySet Name="Users" EntityType="Self.Users" />
-    <AssociationSet Name="FK_Passengers_ToTable" Association="Self.FK_Passengers_ToTable">
+    <AssociationSet Name="FK_Travels_ToTable" Association="Self.FK_Travels_ToTable">
       <End Role="Customers" EntitySet="Customers" />
-      <End Role="Passengers" EntitySet="Passengers" />
+      <End Role="Travels" EntitySet="Travels" />
     </AssociationSet>
     <AssociationSet Name="FK_Details_of_vehicles_ToTable" Association="Self.FK_Details_of_vehicles_ToTable">
       <End Role="Type_of_vehicles" EntitySet="Type_of_vehicles" />

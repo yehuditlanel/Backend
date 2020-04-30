@@ -16,14 +16,14 @@ namespace dal
 
        public void AddVehicle(DetialsOfVehicles detialsOfVehicles)
         {
-            DataBaseEntities1 db = new DataBaseEntities1();
+            DataBaseEntities db = new DataBaseEntities();
             db.Details_of_vehicles.Add(detialsOfVehicles.ConvertVehiclesIoDal());
             db.SaveChanges();
         }
        public List<DetialsOfVehicles> GetVehicles()
         {
             List<Details_of_vehicles> details_Of_Vehicles;
-            using(var DbContext=new DataBaseEntities1())
+            using(var DbContext=new DataBaseEntities())
             {
                 details_Of_Vehicles = DbContext.Details_of_vehicles.ToList();
             }
@@ -32,7 +32,7 @@ namespace dal
         public void RemoveVehicle(int id)
         {
             string i = id.ToString();
-            using (var db = new DataBaseEntities1())
+            using (var db = new DataBaseEntities())
             {
                 Details_of_vehicles c = db.Details_of_vehicles.Find(i);
                 if (c != null)
@@ -46,7 +46,7 @@ namespace dal
         public void UpdateVehicle(DetialsOfVehicles detialsOfVehicles)
         {
             Details_of_vehicles details_Of_Vehicles = Mapper.ConvertVehiclesIoDal(detialsOfVehicles);
-            using (var db = new DataBaseEntities1())
+            using (var db = new DataBaseEntities())
             {
                 db.Entry<Details_of_vehicles>(db.Set<Details_of_vehicles>().Find(details_Of_Vehicles.License_plate)).CurrentValues.SetValues(details_Of_Vehicles);
                 db.SaveChanges();

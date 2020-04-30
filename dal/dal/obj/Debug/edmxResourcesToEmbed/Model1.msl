@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DataBaseModelStoreContainer" CdmEntityContainer="DataBaseEntities1">
+  <EntityContainerMapping StorageEntityContainer="DataBaseModelStoreContainer" CdmEntityContainer="DataBaseEntities">
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="DataBaseModel.Customers">
         <MappingFragment StoreEntitySet="Customers">
@@ -36,7 +36,6 @@
       <EntityTypeMapping TypeName="DataBaseModel.Passengers">
         <MappingFragment StoreEntitySet="Passengers">
           <ScalarProperty Name="Passenger_s_code" ColumnName="Passenger's_code" />
-          <ScalarProperty Name="Group_s_code" ColumnName="Group's_code" />
           <ScalarProperty Name="Passenger_s_name" ColumnName="Passenger's_name" />
           <ScalarProperty Name="Passenger_s_address" ColumnName="Passenger's_address" />
         </MappingFragment>
@@ -73,6 +72,7 @@
           <ScalarProperty Name="Frequency" ColumnName="Frequency" />
           <ScalarProperty Name="Date_of_begin" ColumnName="Date_of_begin" />
           <ScalarProperty Name="Date_of_end" ColumnName="Date_of_end" />
+          <ScalarProperty Name="Group_s_code" ColumnName="Group's_code" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

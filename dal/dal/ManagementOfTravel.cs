@@ -16,22 +16,31 @@ namespace dal
         public List<DetailsOfTravel> GetTravels()
         {
             List<Travels> travels;
-            using (var DbContext = new DataBaseEntities1())
+            using (var DbContext = new DataBaseEntities())
             {
                 travels = DbContext.Travels.ToList();
             }
             return travels.Select(t => Mapper.ConvertTravelToCommon(t)).ToList();
         }
+        public List<DetailsOfTravel> GetTravels(int groupCode)
+        {
+            List<Travels> travels;
+            using (var DbContext = new DataBaseEntities())
+            {
+                travels = DbContext.Travels.Where(t=>t.Group_s_code==groupCode).ToList();
+            }
+            return travels.Select(t => Mapper.ConvertTravelToCommon(t)).ToList();
+        }
         public void AddTravel(DetailsOfTravel detailsOfTravel)
         {
-            DataBaseEntities1 db = new DataBaseEntities1();
+            DataBaseEntities db = new DataBaseEntities();
             db.Travels.Add(detailsOfTravel.ConvertTravelToDal());
             db.SaveChanges();
         }
         public void UpdateTravel(DetailsOfTravel detailsOfTravel)
         {
             Travels travels = Mapper.ConvertTravelToDal(detailsOfTravel);
-            using (var db = new DataBaseEntities1())
+            using (var db = new DataBaseEntities())
             {
                 db.Entry<Travels>(db.Set<Travels>().Find(travels.Travel_s_code)).CurrentValues.SetValues(travels);
                 db.SaveChanges();
@@ -40,7 +49,7 @@ namespace dal
         }
         public void RemoveTravel(string id)
         {
-            using (var db = new DataBaseEntities1())
+            using (var db = new DataBaseEntities())
             {
                 Travels t = db.Travels.Find(id);
                 if (t != null)

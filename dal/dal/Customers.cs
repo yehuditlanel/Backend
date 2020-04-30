@@ -17,7 +17,7 @@ namespace dal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customers()
         {
-            this.Passengers = new HashSet<Passengers>();
+            this.Travels = new HashSet<Travels>();
         }
     
         public int Group_s_code { get; set; }
@@ -26,6 +26,6 @@ namespace dal
         public string Group_s_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Passengers> Passengers { get; set; }
+        public virtual ICollection<Travels> Travels { get; set; }
     }
 }
