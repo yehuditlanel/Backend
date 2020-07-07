@@ -78,10 +78,13 @@ namespace dal
         }
         public static DetailsOfTravel ConvertTravelToCommon(Travels travels)
         {
-            return new DetailsOfTravel(travels.Travel_s_code,travels.Collection_or_dispersing,travels.Destination_or_source,travels.Hour,travels.Frequency,travels.Date_of_begin,travels.Date_of_end,travels.Group_s_code);
+            DataBaseEntities db = new DataBaseEntities();
+            string groupName = db.Customers.Where(c => c.Group_s_code == travels.Group_s_code).Select(c => c.Group_s_name).FirstOrDefault();
+            return new DetailsOfTravel(travels.Travel_s_code,travels.Collection_or_dispersing,travels.Destination_or_source,travels.Hour,travels.Frequency,travels.Date_of_begin,travels.Date_of_end,groupName);
         }
         public static Travels ConvertTravelToDal(this common.DetailsOfTravel detailsOfTravel)
         {
+            DataBaseEntities db = new DataBaseEntities();
             Travels detailsOfTravelDal = new Travels();
             detailsOfTravelDal.Travel_s_code = detailsOfTravel.TravelCode;
             detailsOfTravelDal.Collection_or_dispersing = detailsOfTravel.CollectionOrDispersing;
@@ -90,7 +93,8 @@ namespace dal
             detailsOfTravelDal.Frequency = detailsOfTravel.Frequency;
             detailsOfTravelDal.Date_of_begin = detailsOfTravel.DateOfBegin;
             detailsOfTravelDal.Date_of_end = detailsOfTravel.DateOfEnd;
-            detailsOfTravelDal.Group_s_code = detailsOfTravel.GroupCode;
+            int groupCode = db.Customers.Where(c => c.Group_s_name == detailsOfTravel.GroupName).Select(c => c.Group_s_code).FirstOrDefault();
+            detailsOfTravelDal.Group_s_code = groupCode;
             return detailsOfTravelDal;
         }
         public static DetailsOfTrack ConvertTrackToCommon(Track_to_travel track)

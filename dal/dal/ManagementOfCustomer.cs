@@ -28,6 +28,15 @@ namespace dal
             }
             return customers.Select(c => Mapper.ConvertCustomerToCommon(c)).ToList();
         }
+        public List<string> GetGroupNames()
+        {
+            List<string> groupNames;
+            using (var DbContext = new DataBaseEntities())
+            {
+                groupNames = DbContext.Customers.Select(g => g.Group_s_name).ToList();
+            }
+                return groupNames;
+        }
         public void RemoveCustomer(int id)
         {
             using (var db = new DataBaseEntities())

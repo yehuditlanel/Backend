@@ -8,7 +8,7 @@ namespace common
 {
     public class DetailsOfTravel
     {
-        public DetailsOfTravel(int travelCode,string collectionOrDispersing,string destinationOrSource,TimeSpan hour,string frequency,DateTime dateOfBegin,DateTime dateOfEnd, int groupCode)
+        public DetailsOfTravel(int travelCode,string collectionOrDispersing,string destinationOrSource,TimeSpan hour,string frequency,DateTime dateOfBegin,DateTime dateOfEnd, string groupName)
         {
             this.travelCode = travelCode;
             this.collectionOrDispersing = collectionOrDispersing;
@@ -17,7 +17,7 @@ namespace common
             this.frequency = frequency;
             this.dateOfBegin = dateOfBegin;
             this.dateOfEnd = dateOfEnd;
-            this.groupCode = groupCode;
+            this.groupName = groupName;
         }
         private int travelCode;
 
@@ -70,12 +70,12 @@ namespace common
             get { return dateOfEnd; }
             set { dateOfEnd = value; }
         }
-        private int groupCode;
+        private string groupName;
 
-        public int GroupCode
+        public string GroupName
         {
-            get { return groupCode; }
-            set { groupCode = value; }
+            get { return groupName; }
+            set { groupName = value; }
         }
     }
 }

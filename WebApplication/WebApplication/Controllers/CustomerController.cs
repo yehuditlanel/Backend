@@ -8,6 +8,7 @@ using bll;
 using common;
 namespace WebApplication.Controllers
 {
+    [RoutePrefix("api/Customer")]
     public class CustomerController : ApiController
     {
        
@@ -16,7 +17,12 @@ namespace WebApplication.Controllers
         {
             return ManagmentOfCustomer.GetCustomers();
         }
-
+        [Route("GetGroupNames")]
+        [HttpGet]
+        public List<string> GetGroupNames()
+        {
+            return ManagmentOfCustomer.GetGroupNames();
+        }
         // GET: api/Customer/5
         public string Get(int id)
         {

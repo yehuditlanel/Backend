@@ -57,7 +57,11 @@ namespace dal
             Users users = Mapper.ConvertUserToDal(detailsOfUser);
             using (var db = new DataBaseEntities())
             {
-                db.Entry<Users>(db.Set<Users>().Find(users.User_s_Id)).CurrentValues.SetValues(users);
+                try
+                {
+                    db.Entry<Users>(db.Set<Users>().Find(users.User_s_Id)).CurrentValues.SetValues(users);
+                }
+                catch (Exception) { }
                 db.SaveChanges();
             }
         }

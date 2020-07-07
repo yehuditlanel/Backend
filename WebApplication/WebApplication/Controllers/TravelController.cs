@@ -23,11 +23,11 @@ namespace WebApplication.Controllers
         }
 
         // POST: api/Travel
-        public void Post([FromBody]DetailsOfTravel detailsOfTravel)
+        public int Post([FromBody]DetailsOfAddTravel detailsOfAddTravel)
         {
-            ManagmentOfTravel.AddTravel(detailsOfTravel);
+            //ManagmentOfTravel.AddTravel(detailsOfAddTravel);
+            return 1;
         }
-
         // PUT: api/Travel/5
         public void Put([FromBody]DetailsOfTravel detailsOfTravel)
         {

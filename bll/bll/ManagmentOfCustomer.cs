@@ -13,6 +13,10 @@ namespace bll
         {
             return ManagementOfCustomer.management_of_customer.GetCustomers();
         }
+        public static List<string> GetGroupNames()
+        {
+            return ManagementOfCustomer.management_of_customer.GetGroupNames();
+        }
         public static void addCustomer(DetailsOfCustomer details_of_customer)
         {
             ManagementOfCustomer.management_of_customer.AddCustomer(details_of_customer);
