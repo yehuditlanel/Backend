@@ -17,15 +17,16 @@
     <Property Name="License_plate" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Type" Type="Int32" Nullable="false" />
     <Property Name="several_places" Type="Int32" Nullable="false" />
-    <Property Name="Quantity_of_fuel_per_km" Type="Double" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Type_of_vehicles" Relationship="Self.FK_Details_of_vehicles_ToTable" FromRole="Details_of_vehicles" ToRole="Type_of_vehicles" />
-    <NavigationProperty Name="Track_to_travel" Relationship="Self.FK_Track_to_travel_ToTable_1" FromRole="Details_of_vehicles" ToRole="Track_to_travel" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Details_of_vehicles_ToTable_1" FromRole="Details_of_vehicles" ToRole="Users" />
   </EntityType>
   <EntityType Name="Hour_of_work_to_driver">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Driver_s_code" Type="Int32" Nullable="false" />
     <Property Name="Day" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Work_from_hour" Type="Time" Nullable="false" Precision="7" />
@@ -36,9 +37,11 @@
     <Key>
       <PropertyRef Name="Passenger_s_code" />
     </Key>
-    <Property Name="Passenger_s_code" Type="Int32" Nullable="false" />
+    <Property Name="Passenger_s_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Passenger_s_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Passenger_s_address" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lat" Type="Double" Nullable="false" />
+    <Property Name="lng" Type="Double" Nullable="false" />
     <NavigationProperty Name="Passengers_to_track" Relationship="Self.FK_Passengers_to_track_ToTable" FromRole="Passengers" ToRole="Passengers_to_track" />
     <NavigationProperty Name="Travels" Relationship="Self.Passengers_to_travels" FromRole="Passengers" ToRole="Travels" />
   </EntityType>
@@ -46,7 +49,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Passenger_s_code" Type="Int32" Nullable="false" />
     <Property Name="Track_s_code" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Passengers" Relationship="Self.FK_Passengers_to_track_ToTable" FromRole="Passengers_to_track" ToRole="Passengers" />
@@ -56,13 +59,10 @@
     <Key>
       <PropertyRef Name="Track_s_code" />
     </Key>
-    <Property Name="Track_s_code" Type="Int32" Nullable="false" />
+    <Property Name="Track_s_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Travel_s_code" Type="Int32" Nullable="false" />
     <Property Name="Driver_s_Id" Type="Int32" Nullable="false" />
-    <Property Name="License_plate" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Date_of_travel" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Hour_of_begin" Type="Time" Nullable="false" Precision="7" />
-    <NavigationProperty Name="Details_of_vehicles" Relationship="Self.FK_Track_to_travel_ToTable_1" FromRole="Track_to_travel" ToRole="Details_of_vehicles" />
     <NavigationProperty Name="Passengers_to_track" Relationship="Self.FK_Passengers_to_track_ToTable_1" FromRole="Track_to_travel" ToRole="Passengers_to_track" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Track_to_travel_ToTable" FromRole="Track_to_travel" ToRole="Users" />
     <NavigationProperty Name="Travels" Relationship="Self.FK_Track_to_travel_ToTable_2" FromRole="Track_to_travel" ToRole="Travels" />
@@ -71,7 +71,7 @@
     <Key>
       <PropertyRef Name="Travel_s_code" />
     </Key>
-    <Property Name="Travel_s_code" Type="Int32" Nullable="false" />
+    <Property Name="Travel_s_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Collection_or_dispersing" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Destination_or_source" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Hour" Type="Time" Nullable="false" Precision="7" />
@@ -79,6 +79,8 @@
     <Property Name="Date_of_begin" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Date_of_end" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Group_s_code" Type="Int32" Nullable="false" />
+    <Property Name="lat" Type="Double" Nullable="false" />
+    <Property Name="lng" Type="Double" Nullable="false" />
     <NavigationProperty Name="Customers" Relationship="Self.FK_Travels_ToTable" FromRole="Travels" ToRole="Customers" />
     <NavigationProperty Name="Track_to_travel" Relationship="Self.FK_Track_to_travel_ToTable_2" FromRole="Travels" ToRole="Track_to_travel" />
     <NavigationProperty Name="Passengers" Relationship="Self.Passengers_to_travels" FromRole="Travels" ToRole="Passengers" />
@@ -98,13 +100,16 @@
     <Property Name="User_s_Id" Type="Int32" Nullable="false" />
     <Property Name="Name_of_user" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Address_of_user" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="Phone_of_user" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Permition" Type="DataBaseModel.Permition" />
+    <Property Name="Phone_of_user" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Permition" Type="DataBaseModel.Permition" Nullable="false" />
+    <NavigationProperty Name="Details_of_vehicles" Relationship="Self.FK_Details_of_vehicles_ToTable_1" FromRole="Users" ToRole="Details_of_vehicles" />
     <NavigationProperty Name="Hour_of_work_to_driver" Relationship="Self.FK_Hour_of_work_to_driver_ToTable" FromRole="Users" ToRole="Hour_of_work_to_driver" />
     <NavigationProperty Name="Track_to_travel" Relationship="Self.FK_Track_to_travel_ToTable" FromRole="Users" ToRole="Track_to_travel" />
   </EntityType>
   <Association Name="FK_Travels_ToTable">
-    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Travels" Type="Self.Travels" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Customers">
@@ -127,15 +132,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Track_to_travel_ToTable_1">
-    <End Role="Details_of_vehicles" Type="Self.Details_of_vehicles" Multiplicity="1" />
-    <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="*" />
+  <Association Name="FK_Details_of_vehicles_ToTable_1">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Details_of_vehicles" Type="Self.Details_of_vehicles" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Details_of_vehicles">
-        <PropertyRef Name="License_plate" />
+      <Principal Role="Users">
+        <PropertyRef Name="User_s_Id" />
       </Principal>
-      <Dependent Role="Track_to_travel">
-        <PropertyRef Name="License_plate" />
+      <Dependent Role="Details_of_vehicles">
+        <PropertyRef Name="User_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -152,7 +157,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Passengers_to_track_ToTable">
-    <End Role="Passengers" Type="Self.Passengers" Multiplicity="1" />
+    <End Role="Passengers" Type="Self.Passengers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Passengers_to_track" Type="Self.Passengers_to_track" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Passengers">
@@ -164,7 +171,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Passengers_to_track_ToTable_1">
-    <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="1" />
+    <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Passengers_to_track" Type="Self.Passengers_to_track" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Track_to_travel">
@@ -188,7 +197,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Track_to_travel_ToTable_2">
-    <End Role="Travels" Type="Self.Travels" Multiplicity="1" />
+    <End Role="Travels" Type="Self.Travels" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Travels">
@@ -221,9 +232,9 @@
       <End Role="Type_of_vehicles" EntitySet="Type_of_vehicles" />
       <End Role="Details_of_vehicles" EntitySet="Details_of_vehicles" />
     </AssociationSet>
-    <AssociationSet Name="FK_Track_to_travel_ToTable_1" Association="Self.FK_Track_to_travel_ToTable_1">
+    <AssociationSet Name="FK_Details_of_vehicles_ToTable_1" Association="Self.FK_Details_of_vehicles_ToTable_1">
+      <End Role="Users" EntitySet="Users" />
       <End Role="Details_of_vehicles" EntitySet="Details_of_vehicles" />
-      <End Role="Track_to_travel" EntitySet="Track_to_travel" />
     </AssociationSet>
     <AssociationSet Name="FK_Hour_of_work_to_driver_ToTable" Association="Self.FK_Hour_of_work_to_driver_ToTable">
       <End Role="Users" EntitySet="Users" />

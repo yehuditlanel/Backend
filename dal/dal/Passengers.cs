@@ -24,6 +24,8 @@ namespace dal
         public int Passenger_s_code { get; set; }
         public string Passenger_s_name { get; set; }
         public string Passenger_s_address { get; set; }
+        public double lat { get; set; }
+        public double lng { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Passengers_to_track> Passengers_to_track { get; set; }

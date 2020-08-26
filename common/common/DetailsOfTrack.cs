@@ -9,13 +9,11 @@ namespace common
 
     public class DetailsOfTrack
     {
-        public DetailsOfTrack(int trackCode,int travelCode,int driverId,string licensePlate,DateTime dateOfTravel,TimeSpan hourOfBegin)
+        public DetailsOfTrack(int trackCode,int travelCode,int driverId,TimeSpan hourOfBegin)
         {
             this.trackCode = trackCode;
             this.travelCode = travelCode;
             this.driverId = driverId;
-            this.licensePlate = licensePlate;
-            this.dateOfTravel = dateOfTravel;
             this.hourOfBegin = hourOfBegin;
         }
         private int trackCode;
@@ -39,20 +37,7 @@ namespace common
             get { return driverId; }
             set { driverId = value; }
         }
-        private string licensePlate;
 
-        public string LicensePlate
-        {
-            get { return licensePlate; }
-            set { licensePlate = value; }
-        }
-        private DateTime dateOfTravel;
-
-        public DateTime DateOfTravel
-        {
-            get { return dateOfTravel; }
-            set { dateOfTravel = value; }
-        }
         private TimeSpan hourOfBegin;
 
         public TimeSpan HourOfBegin

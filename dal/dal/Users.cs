@@ -17,6 +17,7 @@ namespace dal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
+            this.Details_of_vehicles = new HashSet<Details_of_vehicles>();
             this.Hour_of_work_to_driver = new HashSet<Hour_of_work_to_driver>();
             this.Track_to_travel = new HashSet<Track_to_travel>();
         }
@@ -25,8 +26,10 @@ namespace dal
         public string Name_of_user { get; set; }
         public string Address_of_user { get; set; }
         public string Phone_of_user { get; set; }
-        public Nullable<Permition> Permition { get; set; }
+        public Permition Permition { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Details_of_vehicles> Details_of_vehicles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hour_of_work_to_driver> Hour_of_work_to_driver { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
