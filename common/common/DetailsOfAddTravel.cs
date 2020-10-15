@@ -8,12 +8,21 @@ namespace common
 {
     public class DetailsOfAddTravel
     {
-        DetailsOfTravel detailsOfTravel;
+        private DetailsOfTravel detailsOfTravel;
         DetailsOfPassenger[] passenger;
         public DetailsOfAddTravel(DetailsOfTravel detailsOfTravel,DetailsOfPassenger[] passenger)
         {
             this.detailsOfTravel = detailsOfTravel;
             this.passenger = passenger;
         }
+
+        //private DetailsOfTravel myVar;
+
+        public DetailsOfTravel MyProperty
+        {
+            get { return detailsOfTravel; }
+            set { detailsOfTravel = value; }
+        }
+
     }
 }

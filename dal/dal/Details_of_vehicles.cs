@@ -14,13 +14,19 @@ namespace dal
     
     public partial class Details_of_vehicles
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Details_of_vehicles()
+        {
+            this.Track_to_travel = new HashSet<Track_to_travel>();
+        }
+    
         public string License_plate { get; set; }
         public int Type { get; set; }
         public int several_places { get; set; }
-        public string Status { get; set; }
-        public int User_id { get; set; }
+        public double Quantity_of_fuel_per_km { get; set; }
     
         public virtual Type_of_vehicles Type_of_vehicles { get; set; }
-        public virtual Users Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Track_to_travel> Track_to_travel { get; set; }
     }
 }

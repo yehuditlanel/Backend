@@ -16,6 +16,7 @@ namespace dal
             int type = db.Type_of_vehicles.Where(v => v.Type.Equals(detialsOfVehicles.Type)).Select(c => c.Id).FirstOrDefault();
             details_Of_Vehicles_dal.Type = type;
             details_Of_Vehicles_dal.several_places = detialsOfVehicles.Several_places;
+            details_Of_Vehicles_dal.Quantity_of_fuel_per_km = detialsOfVehicles.Quantity_of_fuel_per_km;
             return details_Of_Vehicles_dal;
         }
 
@@ -23,7 +24,7 @@ namespace dal
         {
             DataBaseEntities db = new DataBaseEntities();
             string type = db.Type_of_vehicles.Where(v => v.Id == detialsOfVehicles.Type).Select(c => c.Type).FirstOrDefault();
-            return new DetialsOfVehicles(detialsOfVehicles.License_plate, detialsOfVehicles.several_places, type);
+            return new DetialsOfVehicles(detialsOfVehicles.License_plate, detialsOfVehicles.several_places, detialsOfVehicles.Quantity_of_fuel_per_km, type);
         }
 
         public static Users ConvertUserToDal(this common.DetailsOfUser detailsOfUser)
@@ -98,7 +99,7 @@ namespace dal
         }
         public static DetailsOfTrack ConvertTrackToCommon(Track_to_travel track)
         {
-            return new DetailsOfTrack(track.Track_s_code,track.Travel_s_code,track.Driver_s_Id,track.Hour_of_begin);
+            return new DetailsOfTrack(track.Track_s_code,track.Travel_s_code,track.Driver_s_Id,track.License_plate,track.Date_of_travel,track.Hour_of_begin);
         }
         public static Track_to_travel ConvertTrackToDal(this common.DetailsOfTrack detailsOfTrack)
         {
@@ -106,6 +107,8 @@ namespace dal
             detailsOfTrackDal.Track_s_code = detailsOfTrack.TrackCode;
             detailsOfTrackDal.Travel_s_code = detailsOfTrack.TravelCode;
             detailsOfTrackDal.Driver_s_Id = detailsOfTrack.DriverId;
+            detailsOfTrackDal.License_plate = detailsOfTrack.LicensePlate;
+            detailsOfTrackDal.Date_of_travel = detailsOfTrack.DateOfTravel;
             detailsOfTrackDal.Hour_of_begin = detailsOfTrack.HourOfBegin;
             return detailsOfTrackDal;
         }

@@ -31,10 +31,33 @@ namespace dal
             }
             return travels.Select(t => Mapper.ConvertTravelToCommon(t)).ToList();
         }
-        public void AddTravel(DetailsOfTravel detailsOfTravel)
+        public void AddTravel(DetailsOfTravel detailsOfTravel, List<common.DetailsOfPassenger> names)
         {
+            DetailsOfTrack track;
+            Travels resTravel;
+            Track_to_travel detailOfTrack;
+            Passengers_to_track passengers_To_Track;
             DataBaseEntities db = new DataBaseEntities();
-            db.Travels.Add(detailsOfTravel.ConvertTravelToDal());
+            //common.DetailsOfTravel detailsOfTravel;
+            //detailsOfTravel = detailsOfAddTravel.MyProperty;
+            resTravel=db.Travels.Add(detailsOfTravel.ConvertTravelToDal());
+           
+            
+            db.SaveChanges();
+            var travelCode = resTravel.Travel_s_code;
+            track = new DetailsOfTrack(0, travelCode, 1111, "1111", detailsOfTravel.DateOfBegin, detailsOfTravel.Hour);
+            detailOfTrack=db.Track_to_travel.Add(track.ConvertTrackToDal());
+            db.SaveChanges();
+            var trackCode = detailOfTrack.Track_s_code;
+            for (int i = 0; i < names.Count; i++)
+            {
+                db.Passengers.Add(names[i].ConvertPassengerToDal());
+                passengers_To_Track = new Passengers_to_track();
+                //passengers_To_Track.Id = 4 + i;
+                passengers_To_Track.Passenger_s_code = names[i].PassengerCode;
+                passengers_To_Track.Track_s_code = trackCode;
+                db.Passengers_to_track.Add(passengers_To_Track);
+            }
             db.SaveChanges();
         }
         public void UpdateTravel(DetailsOfTravel detailsOfTravel)
@@ -47,7 +70,7 @@ namespace dal
             }
 
         }
-        public void RemoveTravel(string id)
+        public void RemoveTravel(int id)
         {
             using (var db = new DataBaseEntities())
             {

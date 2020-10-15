@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using bll;
 using common;
+using Newtonsoft.Json;
+
 namespace WebApplication.Controllers
 {
     public class TravelController : ApiController
@@ -23,11 +26,23 @@ namespace WebApplication.Controllers
         }
 
         // POST: api/Travel
-        public int Post([FromBody]DetailsOfAddTravel detailsOfAddTravel)
+        public int Post()
         {
-            //ManagmentOfTravel.AddTravel(detailsOfAddTravel);
+            var httpRequest = HttpContext.Current.Request;
+            var file = httpRequest.Files["file"];
+            var data = httpRequest.Form["data"];
+            DetailsOfTravel detailsOfTravel =
+                JsonConvert.DeserializeObject<DetailsOfTravel>(
+                    httpRequest.Form["data"]
+                    );
+            ManagmentOfTravel.AddTravel(detailsOfTravel,file.InputStream);
             return 1;
         }
+        //public int Post([FromBody]DetailsOfAddTravel detailsOfAddTravel)
+        //{
+        //    ManagmentOfTravel.AddTravel(detailsOfAddTravel);
+        //    return 1;
+        //}
         // PUT: api/Travel/5
         public void Put([FromBody]DetailsOfTravel detailsOfTravel)
         {
@@ -36,7 +51,7 @@ namespace WebApplication.Controllers
         }
 
         // DELETE: api/Travel/5
-        public void Delete(string id)
+        public void Delete(int id)
         {
             //need to delete also all the tracks...
             ManagmentOfTravel.RemoveTravel(id);
