@@ -38,6 +38,8 @@
           <ScalarProperty Name="Passenger_s_code" ColumnName="Passenger's_code" />
           <ScalarProperty Name="Passenger_s_name" ColumnName="Passenger's_name" />
           <ScalarProperty Name="Passenger_s_address" ColumnName="Passenger's_address" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -55,8 +57,7 @@
         <MappingFragment StoreEntitySet="Track_to_travel">
           <ScalarProperty Name="Track_s_code" ColumnName="Track's_code" />
           <ScalarProperty Name="Travel_s_code" ColumnName="Travel's_code" />
-          <ScalarProperty Name="Driver_s_Id" ColumnName="Driver's_Id" />
-          <ScalarProperty Name="License_plate" ColumnName="License_plate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Date_of_travel" ColumnName="Date_of_travel" />
           <ScalarProperty Name="Hour_of_begin" ColumnName="Hour_of_begin" />
         </MappingFragment>
@@ -73,6 +74,8 @@
           <ScalarProperty Name="Date_of_begin" ColumnName="Date_of_begin" />
           <ScalarProperty Name="Date_of_end" ColumnName="Date_of_end" />
           <ScalarProperty Name="Group_s_code" ColumnName="Group's_code" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -80,7 +83,8 @@
       <EntityTypeMapping TypeName="DataBaseModel.Type_of_vehicles">
         <MappingFragment StoreEntitySet="Type_of_vehicles">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

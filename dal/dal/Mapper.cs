@@ -13,7 +13,7 @@ namespace dal
             DataBaseEntities db = new DataBaseEntities();
             Details_of_vehicles details_Of_Vehicles_dal = new Details_of_vehicles();
             details_Of_Vehicles_dal.License_plate = detialsOfVehicles.License_plate;
-            int type = db.Type_of_vehicles.Where(v => v.Type.Equals(detialsOfVehicles.Type)).Select(c => c.Id).FirstOrDefault();
+            int type = db.Type_of_vehicles.Where(v => v.Description.Equals(detialsOfVehicles.Type)).Select(c => c.Id).FirstOrDefault();
             details_Of_Vehicles_dal.Type = type;
             details_Of_Vehicles_dal.several_places = detialsOfVehicles.Several_places;
             details_Of_Vehicles_dal.Quantity_of_fuel_per_km = detialsOfVehicles.Quantity_of_fuel_per_km;
@@ -23,7 +23,7 @@ namespace dal
         public static DetialsOfVehicles ConvertVehicleToCommon(Details_of_vehicles detialsOfVehicles)
         {
             DataBaseEntities db = new DataBaseEntities();
-            string type = db.Type_of_vehicles.Where(v => v.Id == detialsOfVehicles.Type).Select(c => c.Type).FirstOrDefault();
+            string type = db.Type_of_vehicles.Where(v => v.Id == detialsOfVehicles.Type).Select(c => c.Description).FirstOrDefault();
             return new DetialsOfVehicles(detialsOfVehicles.License_plate, detialsOfVehicles.several_places, detialsOfVehicles.Quantity_of_fuel_per_km, type);
         }
 
@@ -80,7 +80,7 @@ namespace dal
         {
             DataBaseEntities db = new DataBaseEntities();
             string groupName = db.Customers.Where(c => c.Group_s_code == travels.Group_s_code).Select(c => c.Group_s_name).FirstOrDefault();
-            return new DetailsOfTravel(travels.Travel_s_code,travels.Collection_or_dispersing,travels.Destination_or_source,travels.Hour,travels.Frequency,travels.Date_of_begin,travels.Date_of_end,groupName);
+            return new DetailsOfTravel(travels.Travel_s_code,travels.Collection_or_dispersing,travels.Destination_or_source,travels.Hour,travels.Frequency,travels.Date_of_begin,travels.Date_of_end,groupName,travels.Latitude,travels.Longitude);
         }
         public static Travels ConvertTravelToDal(this common.DetailsOfTravel detailsOfTravel)
         {
@@ -95,35 +95,46 @@ namespace dal
             detailsOfTravelDal.Date_of_end = detailsOfTravel.DateOfEnd;
             int groupCode = db.Customers.Where(c => c.Group_s_name == detailsOfTravel.GroupName).Select(c => c.Group_s_code).FirstOrDefault();
             detailsOfTravelDal.Group_s_code = groupCode;
+            detailsOfTravelDal.Latitude = detailsOfTravel.Latitude;
+            detailsOfTravelDal.Longitude = detailsOfTravel.Longitude;
             return detailsOfTravelDal;
         }
         public static DetailsOfTrack ConvertTrackToCommon(Track_to_travel track)
         {
-            return new DetailsOfTrack(track.Track_s_code,track.Travel_s_code,track.Driver_s_Id,track.License_plate,track.Date_of_travel,track.Hour_of_begin);
+            DataBaseEntities db = new DataBaseEntities();
+            string Description = db.Type_of_vehicles.Where(v => v.Id == track.Type).Select(v => v.Description).FirstOrDefault();
+            return new DetailsOfTrack(track.Track_s_code,track.Travel_s_code,Description,track.Date_of_travel,track.Hour_of_begin);
         }
         public static Track_to_travel ConvertTrackToDal(this common.DetailsOfTrack detailsOfTrack)
         {
+            DataBaseEntities db = new DataBaseEntities();
+            int codeVehicle = db.Type_of_vehicles.Where(d => d.Description == detailsOfTrack.Type).Select(d => d.Id).FirstOrDefault();
             Track_to_travel detailsOfTrackDal = new Track_to_travel();
             detailsOfTrackDal.Track_s_code = detailsOfTrack.TrackCode;
             detailsOfTrackDal.Travel_s_code = detailsOfTrack.TravelCode;
-            detailsOfTrackDal.Driver_s_Id = detailsOfTrack.DriverId;
-            detailsOfTrackDal.License_plate = detailsOfTrack.LicensePlate;
+            detailsOfTrackDal.Type = codeVehicle;
             detailsOfTrackDal.Date_of_travel = detailsOfTrack.DateOfTravel;
             detailsOfTrackDal.Hour_of_begin = detailsOfTrack.HourOfBegin;
             return detailsOfTrackDal;
         }
-        public static DetailsOfPassenger ConvertPassengerToCommon(Passengers passengers)
+        public static Station ConvertPassengerToCommon(Passengers passengers)
         {
-            return new DetailsOfPassenger(passengers.Passenger_s_code, passengers.Passenger_s_name,passengers.Passenger_s_address);
+            return new Station(passengers.Passenger_s_code.ToString(), passengers.Passenger_s_name, passengers.Passenger_s_address,passengers.Latitude,passengers.Longitude);
         }
-        public static Passengers ConvertPassengerToDal(this common.DetailsOfPassenger detailsOfPassenger)
+        public static Passengers ConvertPassengerToDal(this Station detailsOfPassenger)
         {
             Passengers detailsOfPassengerDal = new Passengers();
-            detailsOfPassengerDal.Passenger_s_code = detailsOfPassenger.PassengerCode;
-            detailsOfPassengerDal.Passenger_s_name = detailsOfPassenger.PassengerName;
-            detailsOfPassengerDal.Passenger_s_address = detailsOfPassenger.PassengerAddress;
+            //detailsOfPassengerDal.Passenger_s_code = detailsOfPassenger.PassengerId;
+            detailsOfPassengerDal.Passenger_s_name = detailsOfPassenger.Name;
+            detailsOfPassengerDal.Passenger_s_address = detailsOfPassenger.Address;
+            detailsOfPassengerDal.Longitude = detailsOfPassenger.Longitude;
+            detailsOfPassengerDal.Latitude = detailsOfPassenger.Latitude;
+
             return detailsOfPassengerDal;
         }
-
+        public static VehicleType ConvertTypeVehicleToCommon(Type_of_vehicles type_Of_Vehicles)
+        {
+            return new VehicleType(type_Of_Vehicles.Id, type_Of_Vehicles.Count, type_Of_Vehicles.Description);
+        }
     }
 }

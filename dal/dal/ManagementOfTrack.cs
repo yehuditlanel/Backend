@@ -15,12 +15,13 @@ namespace dal
         }
         public List<DetailsOfTrack> GetTrackByDriverId(int userId)
         {
-            List<Track_to_travel> tracks;
-            using (var DbContext = new DataBaseEntities())
-            {
-                tracks = DbContext.Track_to_travel.Where(u => u.Driver_s_Id == userId).ToList();
-            }
-            return tracks.Select(t=>Mapper.ConvertTrackToCommon(t)).ToList();
+            return new List<DetailsOfTrack>();
+            //List<Track_to_travel> tracks;
+            //using (var DbContext = new DataBaseEntities())
+            //{
+            //    tracks = DbContext.Track_to_travel.Where(u => u.Driver_s_Id == userId).ToList();
+            //}
+            //return tracks.Select(t=>Mapper.ConvertTrackToCommon(t)).ToList();
         }
         public List<DetailsOfTrack> GetTracks()
         {

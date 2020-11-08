@@ -4,23 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c61655cb041b41bc90e1fb9be1a2a9c5" Name="Diagram1">
+      <Diagram DiagramId="5e844e9910f14b4280f11aab153bd42c" Name="Diagram1">
         <EntityTypeShape EntityType="DataBaseModel.Customers" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.Details_of_vehicles" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.Hour_of_work_to_driver" Width="1.5" PointX="8.25" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.Passengers" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Details_of_vehicles" Width="1.5" PointX="8.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Hour_of_work_to_driver" Width="1.5" PointX="11" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Passengers" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DataBaseModel.Passengers_to_track" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.Track_to_travel" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.Travels" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.Type_of_vehicles" Width="1.5" PointX="3.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseModel.Users" Width="1.5" PointX="6" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Track_to_travel" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Travels" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Type_of_vehicles" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseModel.Users" Width="1.5" PointX="8.75" PointY="7.375" IsExpanded="true" />
         <AssociationConnector Association="DataBaseModel.FK_Travels_ToTable" ManuallyRouted="false" />
         <AssociationConnector Association="DataBaseModel.FK_Details_of_vehicles_ToTable" ManuallyRouted="false" />
-        <AssociationConnector Association="DataBaseModel.FK_Track_to_travel_ToTable_1" ManuallyRouted="false" />
         <AssociationConnector Association="DataBaseModel.FK_Hour_of_work_to_driver_ToTable" ManuallyRouted="false" />
         <AssociationConnector Association="DataBaseModel.FK_Passengers_to_track_ToTable" ManuallyRouted="false" />
         <AssociationConnector Association="DataBaseModel.FK_Passengers_to_track_ToTable_1" ManuallyRouted="false" />
-        <AssociationConnector Association="DataBaseModel.FK_Track_to_travel_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseModel.FK_Track_to_travel_ToTable_1" ManuallyRouted="false" />
         <AssociationConnector Association="DataBaseModel.FK_Track_to_travel_ToTable_2" ManuallyRouted="false" />
         <AssociationConnector Association="DataBaseModel.Passengers_to_travels" ManuallyRouted="false" />
       </Diagram>

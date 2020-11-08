@@ -9,12 +9,11 @@ namespace common
 
     public class DetailsOfTrack
     {
-        public DetailsOfTrack(int trackCode,int travelCode,int? driverId,string licensePlate,DateTime dateOfTravel,TimeSpan hourOfBegin)
+        public DetailsOfTrack(int trackCode,int travelCode,string type,DateTime dateOfTravel,TimeSpan hourOfBegin)
         {
             this.trackCode = trackCode;
             this.travelCode = travelCode;
-            this.driverId = (int)driverId;
-            this.licensePlate = licensePlate;
+            this.type = type;
             this.dateOfTravel = dateOfTravel;
             this.hourOfBegin = hourOfBegin;
         }
@@ -32,19 +31,15 @@ namespace common
             get { return travelCode; }
             set { travelCode = value; }
         }
-        private int driverId;
+       
 
-        public int DriverId
-        {
-            get { return driverId; }
-            set { driverId = value; }
-        }
-        private string licensePlate;
+       
+        private string type;
 
-        public string LicensePlate
+        public string Type
         {
-            get { return licensePlate; }
-            set { licensePlate = value; }
+            get { return type; }
+            set { type = value; }
         }
         private DateTime dateOfTravel;
 

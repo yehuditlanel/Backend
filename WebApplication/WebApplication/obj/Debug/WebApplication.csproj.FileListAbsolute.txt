@@ -684,7 +684,6 @@ C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\System.Web.Http.Cors.dll
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\System.Web.Http.dll
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\System.Web.Http.WebHost.dll
-C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\IronXL.dll
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\dal.dll
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\bll.pdb
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\common.pdb
@@ -696,7 +695,6 @@ C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\Newtonsoft.Json.xml
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\System.Web.Http.WebHost.xml
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\IronXL.xml
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\dal.pdb
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\dal.dll.config
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\obj\Debug\WebApplication.csprojAssemblyReference.cache
@@ -704,3 +702,8 @@ C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\obj\Debug\WebApplication.csproj.CopyComplete
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\obj\Debug\WebApplication.dll
 C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\obj\Debug\WebApplication.pdb
+C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\bll.dll.config
+C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\System.Device.Portable.dll
+C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\Geocoding.dll
+C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\IronXL.dll
+C:\Users\יהודית לנאל\Desktop\חשון\Car2TrackBackend\WebApplication\WebApplication\bin\IronXL.xml

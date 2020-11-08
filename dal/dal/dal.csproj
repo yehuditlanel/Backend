@@ -78,6 +78,7 @@
     <Compile Include="ManagementOfPassenger.cs" />
     <Compile Include="ManagementOfTrack.cs" />
     <Compile Include="ManagementOfTravel.cs" />
+    <Compile Include="ManagementOfTypeVehicle.cs" />
     <Compile Include="ManagementOfUser.cs" />
     <Compile Include="ManagementOfVehicles.cs" />
     <Compile Include="Mapper.cs" />

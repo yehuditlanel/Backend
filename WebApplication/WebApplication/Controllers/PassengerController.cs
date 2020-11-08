@@ -11,25 +11,25 @@ namespace WebApplication.Controllers
     public class PassengerController : ApiController
     {
         // GET: api/Passenger
-        public List<common.DetailsOfPassenger> Get()
+        public List<Station> Get()
         {
             return ManagmentOfPassenger.GetPassengers();
         }
 
         // GET: api/Passenger/5
-        public List<common.DetailsOfPassenger> Get(int trackCode)
+        public List<Station> Get(int trackCode)
         {
             return ManagmentOfPassenger.GetPassengers(trackCode);
         }
 
         // POST: api/Passenger
-        public void Post([FromBody]DetailsOfPassenger detailsOfPassenger)
+        public void Post([FromBody]Station detailsOfPassenger)
         {
             ManagmentOfPassenger.AddPassenger(detailsOfPassenger);
         }
 
         // PUT: api/Passenger/5
-        public void Put([FromBody]DetailsOfPassenger detailsOfPassenger)
+        public void Put([FromBody]Station detailsOfPassenger)
         {
             ManagmentOfPassenger.UpdatePassenger(detailsOfPassenger);
         }

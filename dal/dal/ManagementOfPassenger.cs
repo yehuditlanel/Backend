@@ -14,7 +14,7 @@ namespace dal
             management_of_passenger = new dal.ManagementOfPassenger();
         }
 
-        public List<DetailsOfPassenger> GetPassengers()
+        public List<Station> GetPassengers()
         {
             List<Passengers> passengers;
             using (var DbContext = new DataBaseEntities())
@@ -23,7 +23,7 @@ namespace dal
             }
             return passengers.Select(p => Mapper.ConvertPassengerToCommon(p)).ToList();
         }
-        public List<DetailsOfPassenger> GetPassengers(int trackCode)
+        public List<Station> GetPassengers(int trackCode)
         {
             List<int> passengersCode = new List<int>();
 
@@ -36,14 +36,14 @@ namespace dal
             }
             return passengers.Select(p => Mapper.ConvertPassengerToCommon(p)).ToList();
         }
-        public void AddPassenger(DetailsOfPassenger detailsOfPassenger)
+        public void AddPassenger(Station detailsOfPassenger)
         {
             DataBaseEntities db = new DataBaseEntities();
             db.Passengers.Add(detailsOfPassenger.ConvertPassengerToDal());
             db.SaveChanges();
         }
 
-        public void UpdatePassenger(DetailsOfPassenger detailsOfPassenger)
+        public void UpdatePassenger(Station detailsOfPassenger)
         {
             Passengers passengers = Mapper.ConvertPassengerToDal(detailsOfPassenger);
             using (var db = new DataBaseEntities())

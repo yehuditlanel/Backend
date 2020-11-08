@@ -9,19 +9,19 @@ namespace bll
 {
     public static class ManagmentOfPassenger
     {
-        public static List<DetailsOfPassenger> GetPassengers()
+        public static List<Station> GetPassengers()
         {
             return ManagementOfPassenger.management_of_passenger.GetPassengers();
         }
-        public static List<DetailsOfPassenger> GetPassengers(int trackCode)
+        public static List<Station> GetPassengers(int trackCode)
         {
             return ManagementOfPassenger.management_of_passenger.GetPassengers(trackCode);
         }
-        public static void AddPassenger(DetailsOfPassenger detailsOfPassenger)
+        public static void AddPassenger(Station detailsOfPassenger)
         {
             ManagementOfPassenger.management_of_passenger.AddPassenger(detailsOfPassenger);
         }
-        public static void UpdatePassenger(DetailsOfPassenger detailsOfPassenger)
+        public static void UpdatePassenger(Station detailsOfPassenger)
         {
             ManagementOfPassenger.management_of_passenger.UpdatePassenger(detailsOfPassenger);
         }

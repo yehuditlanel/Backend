@@ -18,12 +18,16 @@ namespace dal
         public Type_of_vehicles()
         {
             this.Details_of_vehicles = new HashSet<Details_of_vehicles>();
+            this.Track_to_travel = new HashSet<Track_to_travel>();
         }
     
         public int Id { get; set; }
-        public string Type { get; set; }
+        public string Description { get; set; }
+        public int Count { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Details_of_vehicles> Details_of_vehicles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Track_to_travel> Track_to_travel { get; set; }
     }
 }

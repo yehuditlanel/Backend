@@ -35,6 +35,8 @@
     <Property Name="Passenger's_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Passenger's_name" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="Passenger's_address" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Passengers_to_track">
     <Key>
@@ -58,8 +60,7 @@
     </Key>
     <Property Name="Track's_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Travel's_code" Type="int" Nullable="false" />
-    <Property Name="Driver's_Id" Type="int" />
-    <Property Name="License_plate" Type="varchar" MaxLength="8" />
+    <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="Date_of_travel" Type="date" Nullable="false" />
     <Property Name="Hour_of_begin" Type="time" Precision="7" Nullable="false" />
   </EntityType>
@@ -75,13 +76,16 @@
     <Property Name="Date_of_begin" Type="date" Nullable="false" />
     <Property Name="Date_of_end" Type="date" Nullable="false" />
     <Property Name="Group's_code" Type="int" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Type_of_vehicles">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -165,27 +169,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Track_to_travel_ToTable">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-    <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="User's_Id" />
-      </Principal>
-      <Dependent Role="Track_to_travel">
-        <PropertyRef Name="Driver's_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Track_to_travel_ToTable_1">
-    <End Role="Details_of_vehicles" Type="Self.Details_of_vehicles" Multiplicity="0..1" />
+    <End Role="Type_of_vehicles" Type="Self.Type_of_vehicles" Multiplicity="1" />
     <End Role="Track_to_travel" Type="Self.Track_to_travel" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Details_of_vehicles">
-        <PropertyRef Name="License_plate" />
+      <Principal Role="Type_of_vehicles">
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Track_to_travel">
-        <PropertyRef Name="License_plate" />
+        <PropertyRef Name="Type" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -248,12 +240,8 @@
       <End Role="Travels" EntitySet="Travels" />
       <End Role="Passengers_to_travels" EntitySet="Passengers_to_travels" />
     </AssociationSet>
-    <AssociationSet Name="FK_Track_to_travel_ToTable" Association="Self.FK_Track_to_travel_ToTable">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Track_to_travel" EntitySet="Track_to_travel" />
-    </AssociationSet>
     <AssociationSet Name="FK_Track_to_travel_ToTable_1" Association="Self.FK_Track_to_travel_ToTable_1">
-      <End Role="Details_of_vehicles" EntitySet="Details_of_vehicles" />
+      <End Role="Type_of_vehicles" EntitySet="Type_of_vehicles" />
       <End Role="Track_to_travel" EntitySet="Track_to_travel" />
     </AssociationSet>
     <AssociationSet Name="FK_Track_to_travel_ToTable_2" Association="Self.FK_Track_to_travel_ToTable_2">

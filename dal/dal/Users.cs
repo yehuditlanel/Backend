@@ -18,7 +18,6 @@ namespace dal
         public Users()
         {
             this.Hour_of_work_to_driver = new HashSet<Hour_of_work_to_driver>();
-            this.Track_to_travel = new HashSet<Track_to_travel>();
         }
     
         public int User_s_Id { get; set; }
@@ -29,7 +28,5 @@ namespace dal
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hour_of_work_to_driver> Hour_of_work_to_driver { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Track_to_travel> Track_to_travel { get; set; }
     }
 }
