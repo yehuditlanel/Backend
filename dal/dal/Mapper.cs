@@ -20,11 +20,11 @@ namespace dal
             return details_Of_Vehicles_dal;
         }
 
-        public static DetialsOfVehicles ConvertVehicleToCommon(Details_of_vehicles detialsOfVehicles)
+        public static VehicleType  ConvertVehicleToCommon(Type_of_vehicles detialsOfVehicles)
         {
             DataBaseEntities db = new DataBaseEntities();
-            string type = db.Type_of_vehicles.Where(v => v.Id == detialsOfVehicles.Type).Select(c => c.Description).FirstOrDefault();
-            return new DetialsOfVehicles(detialsOfVehicles.License_plate, detialsOfVehicles.several_places, detialsOfVehicles.Quantity_of_fuel_per_km, type);
+            //string type = db.Type_of_vehicles.Where(v => v.Id == detialsOfVehicles.Type).Select(c => c.Description).FirstOrDefault();
+            return new VehicleType(detialsOfVehicles.Id, detialsOfVehicles.Count, detialsOfVehicles.Description);
         }
 
         public static Users ConvertUserToDal(this common.DetailsOfUser detailsOfUser)

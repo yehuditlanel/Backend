@@ -9,7 +9,7 @@ namespace bll
 {
     public static class ManagementOfVehicle
     {
-        public static List<DetialsOfVehicles> GetVehicles()
+        public static List<VehicleType> GetVehicles()
         {
             return ManagementOfVehicles.management_of_vehicles.GetVehicles();
         }

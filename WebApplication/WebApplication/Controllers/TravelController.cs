@@ -28,6 +28,7 @@ namespace WebApplication.Controllers
         // POST: api/Travel
         public int Post()
         {
+            return 144;
             var httpRequest = HttpContext.Current.Request;
             var file = httpRequest.Files["file"];
             var data = httpRequest.Form["data"];
@@ -35,8 +36,7 @@ namespace WebApplication.Controllers
                 JsonConvert.DeserializeObject<DetailsOfTravel>(
                     httpRequest.Form["data"]
                     );
-            ManagmentOfTravel.AddTravel(detailsOfTravel,file.InputStream);
-            return 1;
+           return ManagmentOfTravel.AddTravel(detailsOfTravel,file.InputStream);
         }
         //public int Post([FromBody]DetailsOfAddTravel detailsOfAddTravel)
         //{

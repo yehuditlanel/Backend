@@ -31,7 +31,7 @@ namespace dal
             }
             return travels.Select(t => Mapper.ConvertTravelToCommon(t)).ToList();
         }
-        public void AddTravel(DetailsOfTravel detailsOfTravel, List<Transportation> lTransportation)
+        public int AddTravel(DetailsOfTravel detailsOfTravel, List<Transportation> lTransportation)
         {
             DetailsOfTrack track;
             Passengers passengers;
@@ -64,9 +64,9 @@ namespace dal
                     db.SaveChanges();
                 }
             }
-           
-            
-            
+            return detailsOfTravel.TravelCode;
+
+
         }
         public void UpdateTravel(DetailsOfTravel detailsOfTravel)
         {

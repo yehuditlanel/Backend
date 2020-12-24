@@ -19,7 +19,7 @@ namespace bll
         {
             return ManagementOfTravel.management_of_travel.GetTravels(groupCode);
         }
-        public static void AddTravel(DetailsOfTravel detailsOfTravel, Stream fileStream)
+        public static int AddTravel(DetailsOfTravel detailsOfTravel, Stream fileStream)
         {
             List<Station> lPassenger = new List<Station>();
             Station oDestination = new Station(string.Empty, string.Empty, "נודע ביהודה 11 מודיעין עילית", 31.9350843, 35.0455159);
@@ -174,7 +174,7 @@ namespace bll
             List<Transportation> lTransportation = oEngine.GetJourneyDetails(lPassenger);
 
 
-            ManagementOfTravel.management_of_travel.AddTravel(detailsOfTravel, lTransportation);
+           return ManagementOfTravel.management_of_travel.AddTravel(detailsOfTravel, lTransportation);
 
         }
         //public static void AddTravel(DetailsOfTravel detailsOfTravel)

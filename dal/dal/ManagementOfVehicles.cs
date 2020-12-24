@@ -20,14 +20,14 @@ namespace dal
             db.Details_of_vehicles.Add(detialsOfVehicles.ConvertVehiclesIoDal());
             db.SaveChanges();
         }
-       public List<DetialsOfVehicles> GetVehicles()
+       public List<VehicleType> GetVehicles()
         {
-            List<Details_of_vehicles> details_Of_Vehicles;
+            List<Type_of_vehicles> vehicles;
             using(var DbContext=new DataBaseEntities())
             {
-                details_Of_Vehicles = DbContext.Details_of_vehicles.ToList();
+                vehicles = DbContext.Type_of_vehicles.ToList();
             }
-            return details_Of_Vehicles.Select(v => Mapper.ConvertVehicleToCommon(v)).ToList();
+            return vehicles.Select(v => Mapper.ConvertVehicleToCommon(v)).ToList();
         }
         public void RemoveVehicle(int id)
         {

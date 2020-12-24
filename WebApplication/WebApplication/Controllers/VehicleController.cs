@@ -11,7 +11,7 @@ namespace WebApplication.Controllers
     public class VehicleController : ApiController
     {
         // GET: api/Vehicle
-        public List<DetialsOfVehicles> Get()
+        public List<VehicleType> Get()
         {
             return ManagementOfVehicle.GetVehicles();
         }
