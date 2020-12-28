@@ -13,7 +13,7 @@ namespace bll
         {
             return ManagementOfVehicles.management_of_vehicles.GetVehicles();
         }
-        public static void AddVehicle(DetialsOfVehicles detialsOfVehicles)
+        public static void AddVehicle(VehicleType detialsOfVehicles)
         {
             ManagementOfVehicles.management_of_vehicles.AddVehicle(detialsOfVehicles);
         }
@@ -21,7 +21,7 @@ namespace bll
         {
             ManagementOfVehicles.management_of_vehicles.RemoveVehicle(id);
         }
-        public static void UpdateVehicle(DetialsOfVehicles detialsOfVehicles)
+        public static void UpdateVehicle(VehicleType detialsOfVehicles)
         {
             ManagementOfVehicles.management_of_vehicles.UpdateVehicle(detialsOfVehicles);
         }

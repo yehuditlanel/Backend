@@ -13,9 +13,16 @@ namespace dal
         {
             management_of_track = new dal.ManagementOfTrack();
         }
-        public List<DetailsOfTrack> GetTrackByDriverId(int userId)
+        public DetailsOfTravel GetTrackByDriverId(int userId)
         {
-            return new List<DetailsOfTrack>();
+            int travelCode;
+            Travels detailsOfTravel;
+            using (var DbContext = new DataBaseEntities())
+            {
+                travelCode = DbContext.Track_to_travel.Where(u => u.Track_s_code == userId).Select(d => d.Travel_s_code).FirstOrDefault();
+                detailsOfTravel = DbContext.Travels.Where(t => t.Travel_s_code == travelCode).ToList().FirstOrDefault();
+            }
+            return Mapper.ConvertTravelToCommon(detailsOfTravel);
             //List<Track_to_travel> tracks;
             //using (var DbContext = new DataBaseEntities())
             //{

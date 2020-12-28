@@ -23,13 +23,13 @@ namespace WebApplication.Controllers
         }
 
         // POST: api/Vehicle
-        public void Post([FromBody]DetialsOfVehicles detialsOfVehicles)
+        public void Post([FromBody]VehicleType detialsOfVehicles)
         {
             ManagementOfVehicle.AddVehicle(detialsOfVehicles);
         }
 
         // PUT: api/Vehicle/5
-        public void Put([FromBody]DetialsOfVehicles detialsOfVehicles)
+        public void Put([FromBody]VehicleType detialsOfVehicles)
         {
             ManagementOfVehicle.UpdateVehicle(detialsOfVehicles);
         }

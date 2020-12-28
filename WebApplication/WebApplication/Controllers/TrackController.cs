@@ -24,7 +24,7 @@ namespace WebApplication.Controllers
         }
         [Route("GetTrackByDriverId")]
         [HttpGet]
-        public List<DetailsOfTrack> GetTrackByDriverId(int userId)
+        public DetailsOfTravel GetTrackByDriverId(int userId)
         {
             return ManagmentOTrack.GetTrackByDriverId(userId);
         }

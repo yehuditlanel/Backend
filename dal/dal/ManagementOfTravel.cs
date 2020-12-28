@@ -64,7 +64,7 @@ namespace dal
                     db.SaveChanges();
                 }
             }
-            return detailsOfTravel.TravelCode;
+            return travelCode;
 
 
         }

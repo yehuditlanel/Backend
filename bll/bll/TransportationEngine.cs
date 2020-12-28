@@ -332,7 +332,7 @@ namespace bll
             {
                 try
                 {
-                    IGeocoder geocoder = new GoogleGeocoder() { ApiKey = "insert your api key", Language = "iw" };
+                    IGeocoder geocoder = new GoogleGeocoder() { ApiKey = "AIzaSyAk6Tl0UR2KyiwzfiW3YOZ0A5Jn5aNKias", Language = "iw" };
 
                     Address[] addresses = geocoder.Geocode(station.Address).ToArray();
 

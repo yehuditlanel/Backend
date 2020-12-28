@@ -8,16 +8,15 @@ namespace dal
 {
     public static class Mapper
     {
-        public static Details_of_vehicles ConvertVehiclesIoDal(this common.DetialsOfVehicles detialsOfVehicles)
+        public static Type_of_vehicles ConvertVehiclesIoDal(this common.VehicleType detialsOfVehicles)
         {
             DataBaseEntities db = new DataBaseEntities();
-            Details_of_vehicles details_Of_Vehicles_dal = new Details_of_vehicles();
-            details_Of_Vehicles_dal.License_plate = detialsOfVehicles.License_plate;
-            int type = db.Type_of_vehicles.Where(v => v.Description.Equals(detialsOfVehicles.Type)).Select(c => c.Id).FirstOrDefault();
-            details_Of_Vehicles_dal.Type = type;
-            details_Of_Vehicles_dal.several_places = detialsOfVehicles.Several_places;
-            details_Of_Vehicles_dal.Quantity_of_fuel_per_km = detialsOfVehicles.Quantity_of_fuel_per_km;
-            return details_Of_Vehicles_dal;
+            Type_of_vehicles type_of_vehicles = new Type_of_vehicles();
+            type_of_vehicles.Id = detialsOfVehicles.Code;
+            type_of_vehicles.Count = detialsOfVehicles.Count;
+            type_of_vehicles.Description = detialsOfVehicles.Description;
+
+            return type_of_vehicles;
         }
 
         public static VehicleType  ConvertVehicleToCommon(Type_of_vehicles detialsOfVehicles)

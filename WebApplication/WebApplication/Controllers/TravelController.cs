@@ -28,7 +28,6 @@ namespace WebApplication.Controllers
         // POST: api/Travel
         public int Post()
         {
-            return 144;
             var httpRequest = HttpContext.Current.Request;
             var file = httpRequest.Files["file"];
             var data = httpRequest.Form["data"];

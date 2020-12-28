@@ -14,10 +14,10 @@ namespace dal
             management_of_vehicles = new ManagementOfVehicles();
         }
 
-       public void AddVehicle(DetialsOfVehicles detialsOfVehicles)
+       public void AddVehicle(VehicleType detialsOfVehicles)
         {
             DataBaseEntities db = new DataBaseEntities();
-            db.Details_of_vehicles.Add(detialsOfVehicles.ConvertVehiclesIoDal());
+            db.Type_of_vehicles.Add(detialsOfVehicles.ConvertVehiclesIoDal());
             db.SaveChanges();
         }
        public List<VehicleType> GetVehicles()
@@ -31,24 +31,24 @@ namespace dal
         }
         public void RemoveVehicle(int id)
         {
-            string i = id.ToString();
+            //string i = id.ToString();
             using (var db = new DataBaseEntities())
             {
-                Details_of_vehicles c = db.Details_of_vehicles.Find(i);
+                Type_of_vehicles c = db.Type_of_vehicles.Find(id);
                 if (c != null)
                 {
-                    db.Details_of_vehicles.Remove(c);
+                    db.Type_of_vehicles.Remove(c);
                     db.SaveChanges();
                 }
             }
         }
 
-        public void UpdateVehicle(DetialsOfVehicles detialsOfVehicles)
+        public void UpdateVehicle(VehicleType detialsOfVehicles)
         {
-            Details_of_vehicles details_Of_Vehicles = Mapper.ConvertVehiclesIoDal(detialsOfVehicles);
+            Type_of_vehicles details_Of_Vehicles = Mapper.ConvertVehiclesIoDal(detialsOfVehicles);
             using (var db = new DataBaseEntities())
             {
-                db.Entry<Details_of_vehicles>(db.Set<Details_of_vehicles>().Find(details_Of_Vehicles.License_plate)).CurrentValues.SetValues(details_Of_Vehicles);
+                db.Entry<Type_of_vehicles>(db.Set<Type_of_vehicles>().Find(details_Of_Vehicles.Id)).CurrentValues.SetValues(details_Of_Vehicles);
                 db.SaveChanges();
             }
         }

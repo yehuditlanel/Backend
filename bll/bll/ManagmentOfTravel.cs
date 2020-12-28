@@ -22,7 +22,8 @@ namespace bll
         public static int AddTravel(DetailsOfTravel detailsOfTravel, Stream fileStream)
         {
             List<Station> lPassenger = new List<Station>();
-            Station oDestination = new Station(string.Empty, string.Empty, "נודע ביהודה 11 מודיעין עילית", 31.9350843, 35.0455159);
+           // Station oDestination = new Station(string.Empty, string.Empty, "נודע ביהודה 11 מודיעין עילית", 31.9350843, 35.0455159);
+            Station oDestination = new Station(string.Empty, string.Empty, detailsOfTravel.DestinationOrSource,detailsOfTravel.Latitude,detailsOfTravel.Longitude);
             oDestination.IsDestination = true;
 
             lPassenger.Add(oDestination);
